@@ -11,8 +11,10 @@ extern const u8 breakCountFrame;
 //problem specific variables
 extern const char* input_m64;
 extern const int startFrame; //ingame frame -1??
+extern const int startFrameCourse;
 extern const int readLength; //+a couple frames
 extern int max_frames; //max frames to bruteforce
+extern const int update_max_frames;
 
 //otehr
 extern const int merge_mod;
@@ -32,5 +34,7 @@ extern const int maxSharedSegs;
 extern const int maxLocalSegs;
 
 extern const int MARIO_OBJ_INX; 
+
+extern const float COARSENESS;
 
 #endif

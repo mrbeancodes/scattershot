@@ -9,19 +9,52 @@
 #include "scattershot/scattershot.h"
 #include "scattershot/settings.h"
 
+//checklist of things adjust to the problem
+//everything util end settings
+////you have to first find a bss and data map that works for your problem by uncommenting #define FINDMAP
+////and then paste it in util.c (this can often result in segfaults if not done right)
+//settings.c 
+//break_condition
+//write_condition
+//truncFunc sometimes
+//perturbInput sometimes
+//end checklist
+//
+//tunnel mode stuff test
+Vec3df reachedPos[500];
+QUBOID cubePos[500] = {0};
+float pad = 5.0f;
+
 //settings
+//also see settings.c
+//#define omp_get_wtime() 0 //dont time
+#define usereftas 0 //tunnelmode
+                    
+//#define FINDMAP //finding out what parts of the so change and which dont
+#ifdef FINDMAP
+#define prstate 1
+#define LOAD(sobase, state) riskyLoad(sobase, state)
+#define SAVE(sobase, state) save(sobase, state)
+#else
 #define prstate 0
 #define LOAD(sobase, state) riskyLoad3(sobase, state)
+#define SAVE(sobase, state) riskySave(sobase, state)
+#endif
+
+//#define SAVE(sobase, state) riskySave(sobase, state)
 //#define LOAD(sobase, state) riskyLoad(sobase, state)
 //#define LOAD(sobase, state) riskyLoadJ(sobase, state)
 
-inline float fitness(SO* so,int frame) {
+inline float fitness(SO* so,int frame) { //block fitness
     //return -fabs(*so->pyraYNorm);
     return -1000.0 * (frame + 1.0) + *so->marioHSpd;
+    //return (-1000* (float) frame + (*so->marioYawFacing));
 }
 
 inline float goal_fitness(SO* so, int frame) {
     return (-(float)frame - *so->marioY);
+    //return (-(float)frame + *so->marioX);
+    //return (-1000* (float) frame + (*so->marioYawFacing));
 }
 
 inline float test_fitness(SO* so, int frame) {
@@ -35,18 +68,18 @@ float found_test[40][10];
 int found_test_count = 0;
 
 //define areas
-//TRIANGLE tr_start = {
-//                2645.5f - 1.0f,   2071.0f,
-//                4215.0f,  1881.0f, 
-//                4215.0f,  2191.0f,
-//                -1860.0f,  INFINITY,
-//                                };
-//
-//QUBOID qu_carpet = {
-//                4200.0f,   INFINITY,
-//                -1860.0,  INFINITY, 
-//                1840.0,     2251.0
-//                                };
+TRIANGLE tr_start = {
+                2645.5f - 1.0f,   2071.0f,
+                4215.0f,  1881.0f, 
+                4215.0f,  2191.0f,
+                -1860.0f,  INFINITY,
+                                };
+
+QUBOID qu_before_carpet = {
+                2644.0f,   4213.0f,
+                -1860.0,  INFINITY, 
+                1880.0,     2072.0
+                                };
 //QUBOID qu_carp = {
 //                3850.0f,   4213.0f,
 //                -1834.0f,  -1799.0f, 
@@ -58,59 +91,42 @@ QUBOID qu_start = {
                 400.f,  4600.0f,
 };
 
-void read_input(Input* fileInputs) {
-        Input in;
-		FILE *fp = fopen(input_m64, "r");
-        if (!fp) {
-            printf("failed to open m64!\n");
-            exit(1);
-        }
-        fseek(fp, 0x400, SEEK_SET);
-        for (int i = 0; i < readLength; i++) {
-            fread(&in, sizeof(Input), 1, fp);
-            in.b = (in.b >> 8) | (in.b << 8); // Fuck me endianness
-            fileInputs[i] = in;
-        }
-        fclose(fp);
-}
-
-void run_inputs(SO* so, Input* fileInputs, SaveState* state,int* startCourse,int* startArea) {
-    for (int f = 0; f < readLength; f++) {
-        *so->gControllerPads = fileInputs[f];
-        so->sm64_update();
-    	//if(f > startFrame - 200){
-    		//for(int off = 0; off < 1000; off += 2){
-    			//float *tentativeHeight = (float *)((char *)gMarioStates + off);
-    			//if(*tentativeHeight == -3071.0){
-    			//	printf("%d %d %f\n", f, off, *tentativeHeight);
-    			//}
-    		//}
-    	//}
-    	//if(f > startFrame){
-        //    printf("at frame %d ",f);
-        //    print_act(so);
-    	//}
-        if (f == startFrame - 1) {
-            save(so->sm64_base, state);
-            *startCourse = *so->gCurrCourseNum;
-            *startArea = *so->gCurrAreaIndex;
-            print_act(so);
-        }
-    }
-}
-    
 
 bool break_condition(SO* so, unsigned int actionTrunc, int frame) {
     if (frame > max_frames) return true;
 
+    //whitelisted actions 
+    //if (actionTrunc == ACT_PUNCHING || actionTrunc == ACT_WALKING || actionTrunc == ACT_CROUCH_SLIDE) return false;
+
     //TODO test
     if(actionTrunc == ACT_TRIPLE_JUMP) return true;
 
+    //pitfall: forgetting to comment out old break stuff
+    //if(actionTrunc == ACT_JUMP || actionTrunc == ACT_DOUBLE_JUMP || actionTrunc == ACT_JUMP_KICK || actionTrunc == ACT_SIDE_FLIP) return true;
+    //
     //useless states
+    // || (actionTrunc == ACT_WALKING && *so->marioHSpd == 6.0f)
+    //&& *so->marioZ < 4100.0f
+    //if((actionTrunc == ACT_MOVE_PUNCHING  && *so->marioHSpd < 30.0f) || actionTrunc == ACT_START_CRAWLING || actionTrunc == ACT_START_CROUCHING || actionTrunc == ACT_GROUND_POUND  || actionTrunc == ACT_BRAKING_STOP) {
+    //    return true;
+    //}
     if((actionTrunc == ACT_MOVE_PUNCHING  && *so->marioHSpd < 30.0f) || actionTrunc == ACT_START_CRAWLING || actionTrunc == ACT_START_CROUCHING || actionTrunc == ACT_GROUND_POUND || (actionTrunc == ACT_BACKWARD_AIR_KB && *so->marioZ < 4100.0f) || (actionTrunc == ACT_WALKING && *so->marioHSpd == 6.0f) || actionTrunc == ACT_BRAKING_STOP) {
         return true;
     }
 
+    if(usereftas) {
+        //for tunnel mode
+        int i = 0; //max_(frame-1,0);
+        while(cubePos[i].min_x != 0.0f && cubePos[i].min_y != 0.0f && cubePos[i].min_z != 0.0f
+            &&cubePos[i].max_x != 0.0f && cubePos[i].max_y != 0.0f && cubePos[i].max_z != 0.0f
+                ) {
+            if(in_quboid(*so->marioX, *so->marioY, *so->marioZ, &cubePos[i++])){
+                return false;
+            }
+        }
+    } 
+
+    //deep
     if(in_quboid(*so->marioX,*so->marioY,*so->marioZ, &qu_start) && leftLine(4630.0f,4530.0f, 5550.0f, 443.0f, *so->marioX, *so->marioZ)
                                 && leftLine(5100.0f,443.0f, 4200.0f, 4000.0f, *so->marioX, *so->marioZ)
             ) {
@@ -121,12 +137,11 @@ bool break_condition(SO* so, unsigned int actionTrunc, int frame) {
         //}
         return false;
     }
-    //if (in_quboid(so, &qu_carp)) {
-    //        return false;
-    //}
-    //else if(in_quboid(so, &qu_carpet)){
+
+    //if (in_quboid(*so->marioX, *so->marioY, *so->marioZ, &qu_before_carpet)) {
     //    return false;
     //}
+    
     return true;
 }
 
@@ -166,32 +181,114 @@ bool write_condition(SO* so, unsigned int actionTrunc,Input* m64short ,int f_off
         }
     }
 
-    return false;
-    //if (actionTrunc == ACT_STANDING_AGAINST_WALL && 
-    //        //*so->marioY == -1807.0f && 
-    //        *so->marioX > 4180.0f 
-    //        //*so->marioHSpd == 0.0f 
-    //        //*so->marioYawFacing == 32768
-    //        ) {
+    ///if (actionTrunc == ACT_STANDING_AGAINST_WALL && 
+    ///        //*so->marioY == -1807.0f && 
+    ///        *so->marioX > 4200.0f 
+    ///        //*so->marioHSpd == 0.0f 
+    ///        //*so->marioYawFacing == 32768
+    ///        ) {
 
+    //carpet
+    //if (actionTrunc == ACT_CROUCH_SLIDE && *so->marioHSpd >= 10.0f) {
     //    //int cur_fitness = (int) (-10*f_offset + (int)*so->marioX + 100000);
-    //    float cur_fitness = goal_fitness(so, f_offset);
-    //    if (cur_fitness > bestTimes[tid] || bestTimes[tid] == 0) {
-    //        bestTimes[tid] = cur_fitness;
-    //        *lightLen = lightLenLocal;
-    //        for (int lightInx = 0; lightInx < *lightLen; lightInx++) {
-    //            lightningList[lightInx] = lightningLocal[lightInx];
+    //    if(tid >= 0) {
+    //        float cur_fitness = goal_fitness(so, f_offset);
+    //        if (cur_fitness > bestTimes[tid] || bestTimes[tid] == 0) {
+    //            bestTimes[tid] = cur_fitness;
+    //            *lightLen = lightLenLocal;
+    //            if(update_max_frames) 
+    //                max_frames = f_offset; //dont bruteforcer longer than necessary
+    //            for (int lightInx = 0; lightInx < *lightLen; lightInx++) {
+    //                lightningList[lightInx] = lightningLocal[lightInx];
+    //            }
+    //            found_best++;
+    //	        char fileName[128];
+    //            sprintf(fileName, "m64/carpet/carp_crouch_f_%d_%d_%d.m64",f_offset,*so->marioYawFacing, tid);
+    //            writeFile(fileName, input_m64, m64short, startFrame, f_offset + 1);
+    //            printf("found tas\n");
     //        }
-    //        //best_fitness = cur_fitness;
-    //        found_best++;
-    //	    char fileName[128];
-    //        sprintf(fileName, "m64/deepfreeze/deep_f_%d_%f_%d.m64",f_offset,*so->marioX, tid);
-    //        writeFile(fileName, input_m64, m64short, startFrame, f_offset + 1);
-    //        printf("found wall carpet stop\n");
     //    }
+    //    return true;
     //}
+    return false;
 }
 
+void full_update(SO* so, Input* in) {
+    *so->gControllerPads = *in;
+    so->sm64_update();
+}
+
+void read_input(Input* fileInputs) {
+        Input in;
+		FILE *fp = fopen(input_m64, "r");
+        if (!fp) {
+            printf("failed to open m64!\n");
+            exit(1);
+        }
+        fseek(fp, 0x400, SEEK_SET);
+        for (int i = 0; i < readLength; i++) {
+            fread(&in, sizeof(Input), 1, fp);
+            in.b = (in.b >> 8) | (in.b << 8); // Fuck me endianness
+            fileInputs[i] = in;
+        }
+        fclose(fp);
+}
+
+void run_inputs(SO* so, Input* fileInputs, SaveState* state,int* startCourse,int* startArea) {
+    for (int f = 0; f < readLength; f++) {
+        int off = f-startFrame;
+        if (f == startFrameCourse) {
+            findMarioIndex(so);
+        }
+        if (f > startFrameCourse) {
+            //reduced_update(so, &fileInputs[f]); 
+            full_update(so, &fileInputs[f]);
+        }
+        else {
+            full_update(so, &fileInputs[f]);
+        }
+
+    	//if(f > startFrame){
+        //    printf("at frame %d ",f);
+        //    print_act(so);
+    	//}
+        if (f == startFrame - 1) {
+            save(so->sm64_base, state);
+            *startCourse = *so->gCurrCourseNum;
+            *startArea = *so->gCurrAreaIndex;
+            print_act(so);
+            printf("initial x %f y %f z  %f\n",*so->marioX,*so->marioY,*so->marioZ);
+        }
+        unsigned int actionTrunc = *so->marioAction & 0x1FF;
+        if (f >= startFrame) {
+            reachedPos[off].x = *so->marioX;
+            reachedPos[off].y = *so->marioY; 
+            reachedPos[off].z = *so->marioZ;
+        }
+        if (usereftas) {
+            if(write_condition(so, actionTrunc, NULL , f,/*tid -1 dont write the tas*/ -1, NULL, 0, NULL, NULL, NULL)) {
+                max_frames = off;
+                printf("using reference tas with max_frames %d\n",max_frames);
+                break;
+            }
+        }
+    }
+    printf("init cubes\n");
+    for(int f = 0;f < max_frames-1; f++){
+        printf("index %d\n", f);
+        Vec3df pos1 = reachedPos[f];
+        Vec3df pos2 = reachedPos[f+1];
+        cubePos[f].min_x = min_(pos1.x, pos2.x)-pad; 
+        cubePos[f].max_x = max_(pos1.x, pos2.x)+pad;
+        cubePos[f].min_y = min_(pos1.y, pos2.y)-pad; 
+        cubePos[f].max_y = max_(pos1.y, pos2.y)+pad;
+        cubePos[f].min_z = min_(pos1.z, pos2.z)-pad; 
+        cubePos[f].max_z = max_(pos1.z, pos2.z)+pad;
+    }
+    printf("init cubes done\n");
+    //exit(0);
+}
+    
 
 //TODO parse args
 int main(int argc, char *argv[]) {
@@ -248,7 +345,7 @@ int main(int argc, char *argv[]) {
         uint64_t seed = (uint64_t)(tid + 173) * 5786766484692217813;
         //uint64_t seed = (uint64_t)(tid + 173) * time(NULL);
 
-        double timerStart, loadTime = 0, runTime = 0, blockTime = 0;
+        double timerStart, loadTime = 0, runTime = 0, blockTime = 0, pertubTime = 0, saveTime = 0;
 
         int startCourse = 0, startArea = 0;
 
@@ -291,6 +388,7 @@ int main(int argc, char *argv[]) {
         // Give info to the root block.
         riskyLoad(so.sm64_base, &state);
 
+
         blocks[0].pos = truncFunc(&so);
 		blocks[0].tailSeg = (Segment *) malloc(sizeof(Segment)); //Instantiate root segment
 		blocks[0].tailSeg->numFrames = 0;
@@ -324,12 +422,12 @@ int main(int argc, char *argv[]) {
                     printf("Segment garbage collection finished. Ended with %d segments\n", numSegs[totThreads]);
                     
                     double totalTime = omp_get_wtime() - pureStart;
-                    double otherTime = totalTime - loadTime - runTime - blockTime;
+                    double otherTime = totalTime - loadTime - runTime - blockTime - pertubTime - saveTime;
                     printfQ("\nThread ALL Loop %d blocks %d\n", mainLoop, nBlocks[totThreads]);
-                    printfQ("LOAD %.3f RUN %.3f BLOCK %.3f OTHER %.3f TOTAL %.3f\n", loadTime, runTime, blockTime, otherTime,totalTime);
+                    printfQ("LOAD %.3f RUN %.3f BLOCK %.3f PERT %.3f SAVE %.3f OTHER %.3f TOTAL %.3f\n", loadTime, runTime, blockTime, pertubTime,saveTime, otherTime, totalTime);
                     printfQ("found best %d\n", found_best);
                     pureStart = omp_get_wtime();
-                    loadTime = runTime = blockTime = 0;
+                    loadTime = runTime = blockTime = pertubTime = saveTime = 0;
                     printfQ("\n\n");
                 }
                 flushLog();
@@ -338,6 +436,7 @@ int main(int argc, char *argv[]) {
             }
             
             // Pick a block.
+            
             int origInx = pick_block_index(nBlocks, mainLoop, sharedBlocks, sharedHashTab, lightningList, &seed, lightLen);
             if (origInx == -1) break; //couldnt find index
 
@@ -373,11 +472,9 @@ int main(int argc, char *argv[]) {
 					perturbInput(&in, &tmpSeed, trueF, &so, megaRandom);
                     m64short[trueF++] = in;
 
-                    //*so.gControllerPads = in;
-                    //so.sm64_update();
+                    //full_update(&so, &fileInputs[f]);
                     reduced_update(&so, &in);
 
-                    //deleted prevXZSum segment
                     newPos = truncFunc(&so);
                     if (!truncEq(newPos, lightningLocal[lightLenLocal - 1])) {
                         if (lightLenLocal < maxLightning) {
@@ -390,7 +487,9 @@ int main(int argc, char *argv[]) {
 			}
 
             //printf("saving state2\n");
-			save(so.sm64_base, &state2);
+            timerStart = omp_get_wtime();
+			SAVE(so.sm64_base, &state2);
+            saveTime += omp_get_wtime() - timerStart;
             if(prstate) xorStates(&state, &state2, xorSlaves + tid, tid);
 
             Input origLastIn = in;
@@ -427,11 +526,15 @@ int main(int argc, char *argv[]) {
                 int extension = 0;
                 for (f = 0; f < maxRun + extension; f++) {
                     if (found) break; //break if already found something
+                                      //
+                    timerStart = omp_get_wtime();
                     perturbInput(&in, &seed, trueF + f, &so, megaRandom);
+                    pertubTime += omp_get_wtime() - timerStart;
+
                     m64short[trueF + f] = in;
                     timerStart = omp_get_wtime();
-                    //*so.gControllerPads = in;
-                    //so.sm64_update();
+
+                    //full_update(&so, &fileInputs[f]);
                     reduced_update(&so, &in);
 
                     runTime += omp_get_wtime() - timerStart;

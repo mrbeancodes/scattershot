@@ -2,7 +2,6 @@
 #include "scattershot/angles.h"
 #include "scattershot/settings.h"
 
-#define COARSENESS 10.0f
 
 //a couple of hints for scattershot to use sometimes
 bool best_practice(Input *in, uint64_t* seed,unsigned int actTrunc, int frame, SO* so) {
@@ -13,7 +12,16 @@ bool best_practice(Input *in, uint64_t* seed,unsigned int actTrunc, int frame, S
     //dont do these dumb random jumps and keep holding a
     
     bool ret=0;
-    ////probably walking against wall
+    //punch start
+    if (actTrunc == ACT_IDLE && *so->marioHSpd == 0.0f) {
+        in->b = 0;
+        in->x = 0;
+        in->y = 0;
+        in->b |= CONT_B;
+        return 1;
+    }
+
+    //probably walking against wall
     if (actTrunc == ACT_WALKING && *so->marioHSpd == 6.0f) {
         in->b = 0;
         in->x = 0;
@@ -76,17 +84,26 @@ bool best_practice(Input *in, uint64_t* seed,unsigned int actTrunc, int frame, S
 
     //walking is kinda slow
     if (actTrunc == ACT_WALKING) {
-        int random = xoro_r(seed) % 100;
         //press z for lj if > 10.64 speed
-        if (*so->marioHSpd > 10.64f && *so->marioHSpd < 40.0f) {
-            if (random < 30) {
+        if (*so->marioHSpd > 10.64f ) {
+            if(*so->marioHSpd < 42.0f) {
+                if (xoro_r(seed) % 10 == 0) {
+                    in->b = 0;
+                    in->b |= CONT_Z;
+                }
+            }
+            //do a random turn
+            if (xoro_r(seed) % 2) {
                 in->b = 0;
-                in->b |= CONT_Z;
+                int16_t angle = (xoro_r(seed) % 2048) - 4096;
+                int tarAng = (int)*so->marioYawFacing + angle - (int)*so->camYaw;
+                match_yaw(in, tarAng, false);
+                return 1;
             }
         }
         //prime time for jump time
         else if(*so->marioHSpd < 10.0f && *so->marioHSpd > 8.8f) {
-            if (random < 50) {
+            if (xoro_r(seed) % 2) {
                 in->b = 0;
                 in->b |= CONT_A;
             }
@@ -197,10 +214,16 @@ bool best_practice(Input *in, uint64_t* seed,unsigned int actTrunc, int frame, S
 void perturbInput(Input *in, uint64_t *seed, int frame,SO* so, int megaRandom) {
     //TODO always, best practice, always for this problem, best practice for this problem, weighted random
     //TODO encode length of every state
-    
+   
     //COMMENTING THIS out can cause segfault because uninited input i think
     if (frame == 0) {
-        //buggy angles???
+        //generic punch start
+        //in->b = 0;
+        //in->b |= CONT_B;
+        //in->x = 1;
+        //in->y = 1;
+        //
+        //deepfreez
         in->b = 0;
         int range = 2500;
         int goal_angle = 62600;
@@ -246,6 +269,7 @@ void perturbInput(Input *in, uint64_t *seed, int frame,SO* so, int megaRandom) {
     int aFact = 4;
     int bFact = 10;
     int zFact = 20;
+
     if (megaRandom) { //TODO megaRandom bool
         //jFact = 2;
         jFact = 10000;
@@ -354,11 +378,17 @@ Vec3d truncFunc(SO* so) {
     s *= 2;
 
     //air kick candidate
-    if (*so->marioHSpd < 28 && (actTrunc == ACT_JUMP || actTrunc == ACT_DOUBLE_JUMP) && *so->marioYVel < 16.0f) {
-        s += 1;
+    if (*so->marioHSpd >= 27.0f && *so->marioHSpd < 40.0f && actTrunc == ACT_DOUBLE_JUMP && *so->marioYVel > -16.0f) {
+        s += 100000 * ((int)floor((float)*so->marioHSpd / 0.5f) + 1); //faster isnt always better
     }
 
-    //s += 100000 * (int)floor((float)*so->marioYawFacing / 1024.0);
+    //for fp precise stuff
+    //if (actTrunc == ACT_WALKING) {
+    //    s += 100000 * ((int)floor((float)*so->marioYawFacing / 16.0) + 1);
+    //}
+    ////if(*so->marioHSpd > 30.0f || actTrunc == ACT_WALKING) {
+    //    s += 100000* 10000 * ((int)floor((float)*so->marioHSpd / 0.2f) + 1);
+    ////}
 
     return (Vec3d){floor(x / COARSENESS), floor(y / COARSENESS), floor(z / COARSENESS), s};
 }

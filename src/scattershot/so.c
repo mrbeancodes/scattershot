@@ -34,6 +34,7 @@ void init_so(SO* so,char* dllName) {
     so->gLakituState     = dlsym(so->handle, "gLakituState");
 
     so->gFrameLogLength  = (u32 *) dlsym(so->handle, "gFrameLogLength");
+    so->gMarioObject     = (void *) dlsym(so->handle, "gMarioObject");
     //unsigned char *gLastCompletedStarNum = (unsigned char *)dlsym(so->handle, "gLastCompletedStarNum");
     so->gCurrCourseNum = (short *)dlsym(so->handle, "gCurrCourseNum");
     so->gCurrAreaIndex = (short *)dlsym(so->handle, "gCurrAreaIndex");
@@ -55,7 +56,7 @@ void init_so(SO* so,char* dllName) {
     so->marioPitchVel = (short *) ((char*)so->gMarioStates + 50);
     so->camYaw = (uint16_t *)((char *)so->gCamera + 340);
 
-    //TODO is this correct?
+
     //so->camMode = (uint8_t *)so->sm64_base + bssStart + 29605;
     so->camMode = (u8*) dlsym(so->handle, "gCamera");
 
@@ -70,7 +71,9 @@ void init_so(SO* so,char* dllName) {
     //so->pyraYNorm = (float *)((char *)so->gObjectPool + 84 * 1392 + 328);
     //so->pyraZNorm = (float *)((char *)so->gObjectPool + 84 * 1392 + 332);
     
-    so->marioAnimInfo = (AnimInfo *)((char *)so->gObjectPool + MARIO_OBJ_INX * 1392 + 0x50);
+    so->obj1AnimInfo =  (AnimInfo *)((char *)so->gObjectPool + 121 * 1392 + 0x50); //carpet
+    //so->marioAnimInfo = (AnimInfo *)((char *)so->gObjectPool + MARIO_OBJ_INX * 1392 + 0x50);
+    //findMarioIndex(so);
 
     //float *bullyX = (float *)((char *)gObjectPool + 57 * 1392 + 56);
     //float *bullyY = (float *)((char *)gObjectPool + 57 * 1392 + 60);
@@ -110,9 +113,39 @@ void reduced_update(SO* so, Input* in){
     *so->gAreaUpdateCounter = *so->gAreaUpdateCounter + 1;
     so->marioAnimInfo->animFrame = so->geo_update_animation_frame(so->marioAnimInfo, &so->marioAnimInfo->animFrameAccelAssist);
     so->marioAnimInfo->animTimer = *so->gAreaUpdateCounter;
-    //so->update_camera(*so->gCamera); // Optional
+
+    //idk
+    //so->obj1AnimInfo->animFrame = so->geo_update_animation_frame(so->obj1AnimInfo, &so->obj1AnimInfo->animFrameAccelAssist);
+    //so->obj1AnimInfo->animTimer = *so->gAreaUpdateCounter;
+    //
+    so->update_camera(*so->gCamera); // Optional
 }
 
+
+void findMarioIndex(SO* so) {
+    int objsize = 1392;
+    bool found = false;
+    for(int i = 0;i < 240;i++){
+        int objsize = 1392;
+        //printf("%lx == %lx\n",(void *)so->gObjectPool + i*objsize , (void*)so->gMarioObject);  
+        float* objX = (float*) ((char *)so->gObjectPool + i * objsize + 56);
+        float* objY = (float*) ((char *)so->gObjectPool + i * objsize + 60);
+        float* objZ = (float*) ((char *)so->gObjectPool + i * objsize + 64);
+        //if (*objY < -1700.0f && *objX > 4100.0f) //filter to find the obj
+            printf("x %f y %f z %f index %d",*objX, *objY, *objZ, i);
+        if(*objX == *so->marioX && *objY == *so->marioY && *objZ == *so->marioZ && !found){
+            so->marioAnimInfo = (AnimInfo *)((char *)so->gObjectPool + i * objsize + 0x50);
+            printf(" found mario");
+            found = true;
+            //return;
+        }
+        printf("\n");
+    }
+    if (!found) {
+        printf("no index found\n");
+        exit(1);
+    }
+}
 
 
 //meme

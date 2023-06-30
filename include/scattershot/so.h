@@ -54,9 +54,11 @@ typedef struct  {
     //uint32_t *ringCnt;
     //char *firstCol;
     u32* gFrameLogLength;
+    void* gMarioObject;
 
     //
     AnimInfo *marioAnimInfo;
+    AnimInfo *obj1AnimInfo; //object to simulate
 
     float *pyraXNorm;
     float *pyraYNorm;
@@ -70,5 +72,6 @@ typedef struct  {
 void init_so(SO* so,char* dllName);
 void print_act(SO *so);
 void reduced_update(SO* so, Input* in);
+void findMarioIndex(SO* so);
 
 #endif

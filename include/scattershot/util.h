@@ -297,6 +297,10 @@ extern FILE *gLogFP;
 #define DEG270 49152
 #define DEG360 65536
 
+//minmax
+#define min_(a, b) (a) < (b) ? (a) : (b)
+#define max_(a, b) (a) > (b) ? (a) : (b)
+
 #ifdef __linux__
 #define CALLBACK //placeholder
 #endif
@@ -440,6 +444,13 @@ typedef struct {
 } Vec3d;
 
 
+//floaty
+typedef struct {
+    float x;
+	float y;
+	float z;
+} Vec3df;
+
 //fifd: I think this is an element of the partition of state
 //space. Will need to understand what each of its fields are
 typedef struct {
@@ -476,6 +487,7 @@ void allocState(SaveState *s);
 void allocStateSmall(SaveState *s);
 void freeState(SaveState *s);
 void load(void* hDLL, SaveState *s);
+void riskySave(void* hDLL, SaveState *s);
 void riskyLoad(void* hDLL, SaveState *s);
 void riskyLoadJ(void* hDLL, SaveState *s);
 void riskyLoad2(void* hDLL, SaveState *s);
