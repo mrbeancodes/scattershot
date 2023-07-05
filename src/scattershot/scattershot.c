@@ -2,6 +2,55 @@
 #include "scattershot/angles.h"
 #include "scattershot/settings.h"
 
+bool problem_specific(Input *in, uint64_t* seed,unsigned int actTrunc, int frame, SO* so) {
+    if (actTrunc == ACT_LONG_JUMP_LAND && *so->marioHSpd < 0.0f && !(in->b & CONT_A)) {
+        in->b = 0;
+        in->b |= CONT_A;
+
+        if(xoro_r(seed) % 2) {
+            int16_t angle = (xoro_r(seed) % 4096) - 8192;
+            int tarAng = -(int)*so->marioYawFacing + angle - (int)*so->camYaw;
+            match_yaw(in, tarAng, false);
+        }
+        else if(xoro_r(seed) % 2) { //1/4
+            int16_t angle = (xoro_r(seed) % 4096) - 8192;
+            int tarAng = (int)*so->marioYawFacing + angle - (int)*so->camYaw;
+            match_yaw(in, tarAng, false);
+        }
+        else {
+            in->x = (xoro_r(seed) % 256) - 128;
+            in->y = (xoro_r(seed) % 256) - 128;
+        }
+        return 1;
+    }
+    //unpress a and input doesnt matter as long as non zero for sblj
+    if (actTrunc == ACT_LONG_JUMP_LAND && *so->marioHSpd < 0.0f && (in->b & CONT_A)) {
+        in->b = 0;
+        in->x = 8;
+        in->y = 8;
+        return 1;
+    }
+    return 0;
+}
+
+bool problem_specific_forced(Input *in, uint64_t* seed,unsigned int actTrunc, int frame, SO* so) {
+    //blj
+    //if(frame % 2 == 0) {
+    //    in->b = 0;
+    //    in->b |= CONT_A;
+    //    in->b |= CONT_Z;
+    //    //nach links
+    //    in->x = - (xoro_r(seed) % 128);
+    //    in->y = (xoro_r(seed) % 256) - 128;
+    //}
+    //else {
+    //    in->b = 0;
+    //    in->b |= CONT_Z;
+    //    in->x = 8;
+    //    in->y = 8;
+    //}
+    return 1;
+}
 
 //a couple of hints for scattershot to use sometimes
 bool best_practice(Input *in, uint64_t* seed,unsigned int actTrunc, int frame, SO* so) {
@@ -12,6 +61,9 @@ bool best_practice(Input *in, uint64_t* seed,unsigned int actTrunc, int frame, S
     //dont do these dumb random jumps and keep holding a
     
     bool ret=0;
+
+    //if (problem_specific(in, seed, actTrunc, frame, so)) return 1;
+
     //punch start
     if (actTrunc == ACT_IDLE && *so->marioHSpd == 0.0f) {
         in->b = 0;
@@ -216,13 +268,30 @@ void perturbInput(Input *in, uint64_t *seed, int frame,SO* so, int megaRandom) {
     //TODO encode length of every state
    
     //COMMENTING THIS out can cause segfault because uninited input i think
+    unsigned int actTrunc = *so->marioAction & 0x1FF;
+    //if (problem_specific_forced (in, seed, actTrunc,frame, so)) return;
+
     if (frame == 0) {
+        //zero input
+        //in->b = 0;
+        //in->b |= CONT_Z;
+        //in->x = 0;
+        //in->y = 0;
+        
         //generic punch start
         //in->b = 0;
         //in->b |= CONT_B;
         //in->x = 1;
         //in->y = 1;
         //
+        //in->b = 0;
+        //in->b |= CONT_A;
+        //in->b |= CONT_Z;
+        //int range = 2500;
+        //int rand_ang = ((int)(xoro_r(seed) % 2*range) - range);
+        //int tarAng = *so->marioYawFacing + rand_ang - (int)*so->camYaw;
+        //match_yaw(in, tarAng, false);
+
         //deepfreez
         in->b = 0;
         int range = 2500;
@@ -233,9 +302,6 @@ void perturbInput(Input *in, uint64_t *seed, int frame,SO* so, int megaRandom) {
         return;
     }
     
-    unsigned int actTrunc = *so->marioAction & 0x1FF;
-    //if (must_user_def(in, seed, actTrunc, frame, so)) return;
-	
     //must
 	if((in->b & CONT_DDOWN) != 0){ //on first frame of pause buffer
 		in->x = in->y = in->b = 0;
@@ -381,6 +447,10 @@ Vec3d truncFunc(SO* so) {
     if (*so->marioHSpd >= 27.0f && *so->marioHSpd < 40.0f && actTrunc == ACT_DOUBLE_JUMP && *so->marioYVel > -16.0f) {
         s += 100000 * ((int)floor((float)*so->marioHSpd / 0.5f) + 1); //faster isnt always better
     }
+
+    //if (actTrunc == ACT_LONG_JUMP) {
+    //    s += 100000 * ((int)floor((float)*so->marioHSpd / 2.0f) + 1); //faster isnt always better
+    //}
 
     //for fp precise stuff
     //if (actTrunc == ACT_WALKING) {

@@ -1,0 +1,114 @@
+{
+    "usereftas": 0,
+    "pad": 25.0,
+    "penalProb": 0,
+    "minProb": 5,
+    "breakCountFrame": 20,
+    "input_m64": "deep_f_120.m64",
+    "dllBaseName": "./sm64_us_o3",
+    "startFrame": 100930,
+    "startFrameCourse": 100930,
+    "switchtoUPDATE": 100930,
+    "readLength": 101100,
+    "max_frames": 250,
+    "update_max_frames": 1,
+    "COARSENESS": 25.0,
+    "merge_mod": 500,
+    "garbage_mod": 3000,
+    "subLoopMax": 100,
+    "megarand_mod": 2,
+    "totThreads": 1,
+    "segLength": 20,
+    "maxSegs": 1024,
+    "maxBlocks": 2000000,
+    "maxHashes": 20000000,
+    "maxSharedBlocks": 20000000,
+    "maxSharedHashes": 200000000,
+    "maxSharedSegs": 25000000,
+    "maxLocalSegs": 2000000,
+    "areas": [
+        {
+            "min_x": 4200.0,
+            "max_x": 5500.0,
+            "min_y": -10000.0,
+            "max_y": 10000.0,
+            "min_z": 400.0,
+            "max_z": 4600.0,
+            "lines": [
+                {
+                "x1": 4630.0,
+                "y1": 4530.0,
+                "x2": 5550.0,
+                "y2": 443.0
+                },
+                {
+                "x1": 5100.0,
+                "y1": 443.0,
+                "x2": 4200.0,
+                "y2": 4000.0
+                }
+            ]
+        }
+    ],
+
+
+    "gBlackList": [
+        {
+            "state": "move_punching",
+            "min_h_spd": -10000,
+            "max_h_spd": 100000,
+            "min_v_spd": -10000,
+            "max_v_spd": 100000
+        },
+        {
+            "state": "start_crawling",
+            "min_h_spd": -10000,
+            "max_h_spd": 100000,
+            "min_v_spd": -10000,
+            "max_v_spd": 100000
+        },
+        {
+            "state": "start_crouching",
+            "min_h_spd": -10000,
+            "max_h_spd": 100000,
+            "min_v_spd": -10000,
+            "max_v_spd": 100000
+        },
+        {
+            "state": "ground_pound",
+            "min_h_spd": -10000,
+            "max_h_spd": 100000,
+            "min_v_spd": -10000,
+            "max_v_spd": 100000
+        },
+        {
+            "state": "walking",
+            "min_h_spd": 6.0,
+            "max_h_spd": 6.0,
+            "min_v_spd": -10000,
+            "max_v_spd": 100000
+        },
+        {
+            "state": "braking_stop",
+            "min_h_spd": -10000,
+            "max_h_spd": 10000,
+            "min_v_spd": -10000,
+            "max_v_spd": 100000
+        }
+    ],
+
+    "write_cond": {
+        "min_h_spd": -1000.0,
+        "max_h_spd": 1000.0,
+        "min_v_spd": -1000.0,
+        "max_v_spd": 1000.0,
+        "min_x":     4324.0,
+        "max_x":     4429.0,
+        "min_y":     -10000.0,
+        "max_y":     1229.0,
+        "min_z":     4309.0,
+        "max_z":     4413.0,
+        "state":     "any"
+    }
+
+}

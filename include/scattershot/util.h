@@ -279,16 +279,7 @@ extern FILE *gLogFP;
 #define ACT_PICKING_UP_BOWSER 0x190
 #define ACT_HOLDING_BOWSER 0x191
 #define ACT_RELEASING_BOWSER 0x192
-
-//old names can be deleted
-#define ACT_STANING_AGAINST_WALL 0x009
-#define ACT_DR_LAND 0x032
-#define ACT_WALK 0x040
-#define ACT_TURNAROUND_1 0x043
-#define ACT_TURNAROUND_2 0x044
-#define ACT_BRAKE 0x045
-#define ACT_DIVE_LAND 0x056
-#define ACT_DR 0x0A6
+#define ACT_ANY 0x193
 
 //dumb
 #define DEG0 0
@@ -318,22 +309,11 @@ typedef struct  {
     /*0x0A 0x42*/ u16 animTimer;
     /*0x0C 0x44*/ s32 animFrameAccelAssist;
     /*0x10 0x48*/ s32 animAccel;
-}AnimInfo;
+} AnimInfo;
 
 typedef s16 (* GEOFUNC)(AnimInfo* , s32 *);
 
 //for defining areas
-typedef struct  {
-    float x1; 
-    float z1; 
-    float x2; 
-    float z2; 
-    float x3; 
-    float z3; 
-    float min_y; 
-    float max_y; 
-} TRIANGLE;
-
 typedef struct  {
     float min_x; 
     float max_x; 
@@ -457,8 +437,7 @@ typedef struct {
     Vec3d         pos;    //fifd: an output of truncFunc. Identifies which block this is
     float         value;    //fifd: a fitness of the best TAS that reaches this block; the higher the better.
     u8 prob;
-	Segment *tailSeg;
-//Time is most important component of value but keeps higher hspeed if time is tied
+	Segment *tailSeg; //Time is most important component of value but keeps higher hspeed if time is tied
 } Block;
 
 typedef struct {
@@ -472,6 +451,45 @@ typedef struct {
     char* fname;
     uint64_t base_addr;
 } soStruct;
+
+typedef struct  {
+    float x1; 
+    float y1; 
+    float x2; 
+    float y2; 
+} LINE;
+
+//constraint within an area or global
+typedef struct  {
+    int  state;
+    float min_v_spd;
+    float max_v_spd;
+    float min_h_spd;
+    float max_h_spd;
+} CONSTR;
+
+//this is bad
+typedef struct  {
+    QUBOID qu;
+    LINE lines[5];
+    int lcount;
+} AREA;
+
+
+//full condition
+typedef struct  {
+    int state;
+    float min_h_spd;
+    float max_h_spd;
+    float min_v_spd;
+    float max_v_spd;
+    float min_x;
+    float max_x;
+    float min_y;
+    float max_y;
+    float min_z;
+    float max_z;
+} STATECOND;
 
 
 int cp(const char *from, const char *to);
@@ -490,13 +508,12 @@ void load(void* hDLL, SaveState *s);
 void riskySave(void* hDLL, SaveState *s);
 void riskyLoad(void* hDLL, SaveState *s);
 void riskyLoadJ(void* hDLL, SaveState *s);
-void riskyLoad2(void* hDLL, SaveState *s);
-void riskyLoad3(void* hDLL, SaveState *s);
+void reducedLoad(void* hDLL, SaveState *s);
+void reducedSave(void* hDLL, SaveState *s);
 void save(void* hDLL, SaveState *s);
 int find_sm64so_base(struct dl_phdr_info *info, size_t size, void *arg);
 void print_xored_states(SaveState* xorSlaves, int tid);
 bool in_quboid(float x, float y, float z, QUBOID* qu);
-bool in_triangle(float x, float y, float z, TRIANGLE* tr);
 void printFields();
 void initFields();
 

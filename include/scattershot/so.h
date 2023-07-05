@@ -71,6 +71,7 @@ typedef struct  {
 
 void init_so(SO* so,char* dllName);
 void print_act(SO *so);
+int get_act(char* actName);
 void reduced_update(SO* so, Input* in);
 void findMarioIndex(SO* so);
 

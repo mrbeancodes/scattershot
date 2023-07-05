@@ -132,19 +132,724 @@ void findMarioIndex(SO* so) {
         float* objY = (float*) ((char *)so->gObjectPool + i * objsize + 60);
         float* objZ = (float*) ((char *)so->gObjectPool + i * objsize + 64);
         //if (*objY < -1700.0f && *objX > 4100.0f) //filter to find the obj
-            printf("x %f y %f z %f index %d",*objX, *objY, *objZ, i);
+        //printf("x %f y %f z %f index %d",*objX, *objY, *objZ, i);
         if(*objX == *so->marioX && *objY == *so->marioY && *objZ == *so->marioZ && !found){
             so->marioAnimInfo = (AnimInfo *)((char *)so->gObjectPool + i * objsize + 0x50);
             printf(" found mario");
             found = true;
             //return;
         }
-        printf("\n");
+        //printf("\n");
     }
     if (!found) {
         printf("no index found\n");
         exit(1);
     }
+    printf("end index\n");
+}
+
+//meme
+int get_act(char* actName) {
+    if(strstr(actName,"uninitialized") && strlen(actName) == strlen("uninitialized")) {
+        return ACT_UNINITIALIZED;
+    }
+    else if(strstr(actName,"idle") && strlen(actName) == strlen("idle")) {
+        return ACT_IDLE;
+    }
+    else if(strstr(actName,"start_sleeping") && strlen(actName) == strlen("start_sleeping")) {
+        return ACT_START_SLEEPING;
+    }
+    else if(strstr(actName,"sleeping") && strlen(actName) == strlen("sleeping")) {
+        return ACT_SLEEPING;
+    }
+    else if(strstr(actName,"waking_up") && strlen(actName) == strlen("waking_up")) {
+        return ACT_WAKING_UP;
+    }
+    else if(strstr(actName,"panting") && strlen(actName) == strlen("panting")) {
+        return ACT_PANTING;
+    }
+    else if(strstr(actName,"hold_panting_(unused)") && strlen(actName) == strlen("hold_panting_(unused)")) {
+        return ACT_HOLD_PANTING_(UNUSED);
+    }
+    else if(strstr(actName,"hold_idle") && strlen(actName) == strlen("hold_idle")) {
+        return ACT_HOLD_IDLE;
+    }
+    else if(strstr(actName,"hold_heavy_idle") && strlen(actName) == strlen("hold_heavy_idle")) {
+        return ACT_HOLD_HEAVY_IDLE;
+    }
+    else if(strstr(actName,"standing_against_wall") && strlen(actName) == strlen("standing_against_wall")) {
+        return ACT_STANDING_AGAINST_WALL;
+    }
+    else if(strstr(actName,"coughing") && strlen(actName) == strlen("coughing")) {
+        return ACT_COUGHING;
+    }
+    else if(strstr(actName,"shivering") && strlen(actName) == strlen("shivering")) {
+        return ACT_SHIVERING;
+    }
+    else if(strstr(actName,"in_quicksand") && strlen(actName) == strlen("in_quicksand")) {
+        return ACT_IN_QUICKSAND;
+    }
+    else if(strstr(actName,"unknown_2020e") && strlen(actName) == strlen("unknown_2020e")) {
+        return ACT_UNKNOWN_2020E;
+    }
+    else if(strstr(actName,"crouching") && strlen(actName) == strlen("crouching")) {
+        return ACT_CROUCHING;
+    }
+    else if(strstr(actName,"start_crouching") && strlen(actName) == strlen("start_crouching")) {
+        return ACT_START_CROUCHING;
+    }
+    else if(strstr(actName,"stop_crouching") && strlen(actName) == strlen("stop_crouching")) {
+        return ACT_STOP_CROUCHING;
+    }
+    else if(strstr(actName,"start_crawling") && strlen(actName) == strlen("start_crawling")) {
+        return ACT_START_CRAWLING;
+    }
+    else if(strstr(actName,"stop_crawling") && strlen(actName) == strlen("stop_crawling")) {
+        return ACT_STOP_CRAWLING;
+    }
+    else if(strstr(actName,"slide_kick_slide_stop") && strlen(actName) == strlen("slide_kick_slide_stop")) {
+        return ACT_SLIDE_KICK_SLIDE_STOP;
+    }
+    else if(strstr(actName,"shockwave_bounce") && strlen(actName) == strlen("shockwave_bounce")) {
+        return ACT_SHOCKWAVE_BOUNCE;
+    }
+    else if(strstr(actName,"first_person") && strlen(actName) == strlen("first_person")) {
+        return ACT_FIRST_PERSON;
+    }
+    else if(strstr(actName,"backflip_land_stop") && strlen(actName) == strlen("backflip_land_stop")) {
+        return ACT_BACKFLIP_LAND_STOP;
+    }
+    else if(strstr(actName,"jump_land_stop") && strlen(actName) == strlen("jump_land_stop")) {
+        return ACT_JUMP_LAND_STOP;
+    }
+    else if(strstr(actName,"double_jump_land_stop") && strlen(actName) == strlen("double_jump_land_stop")) {
+        return ACT_DOUBLE_JUMP_LAND_STOP;
+    }
+    else if(strstr(actName,"freefall_land_stop") && strlen(actName) == strlen("freefall_land_stop")) {
+        return ACT_FREEFALL_LAND_STOP;
+    }
+    else if(strstr(actName,"side_flip_land_stop") && strlen(actName) == strlen("side_flip_land_stop")) {
+        return ACT_SIDE_FLIP_LAND_STOP;
+    }
+    else if(strstr(actName,"hold_jump_land_stop") && strlen(actName) == strlen("hold_jump_land_stop")) {
+        return ACT_HOLD_JUMP_LAND_STOP;
+    }
+    else if(strstr(actName,"hold_freefall_land_stop") && strlen(actName) == strlen("hold_freefall_land_stop")) {
+        return ACT_HOLD_FREEFALL_LAND_STOP;
+    }
+    else if(strstr(actName,"air_throw_land") && strlen(actName) == strlen("air_throw_land")) {
+        return ACT_AIR_THROW_LAND;
+    }
+    else if(strstr(actName,"twirl_land") && strlen(actName) == strlen("twirl_land")) {
+        return ACT_TWIRL_LAND;
+    }
+    else if(strstr(actName,"lava_boost_land") && strlen(actName) == strlen("lava_boost_land")) {
+        return ACT_LAVA_BOOST_LAND;
+    }
+    else if(strstr(actName,"triple_jump_land_stop") && strlen(actName) == strlen("triple_jump_land_stop")) {
+        return ACT_TRIPLE_JUMP_LAND_STOP;
+    }
+    else if(strstr(actName,"long_jump_land_stop") && strlen(actName) == strlen("long_jump_land_stop")) {
+        return ACT_LONG_JUMP_LAND_STOP;
+    }
+    else if(strstr(actName,"ground_pound_land") && strlen(actName) == strlen("ground_pound_land")) {
+        return ACT_GROUND_POUND_LAND;
+    }
+    else if(strstr(actName,"braking_stop") && strlen(actName) == strlen("braking_stop")) {
+        return ACT_BRAKING_STOP;
+    }
+    else if(strstr(actName,"butt_slide_stop") && strlen(actName) == strlen("butt_slide_stop")) {
+        return ACT_BUTT_SLIDE_STOP;
+    }
+    else if(strstr(actName,"hold_butt_slide_stop") && strlen(actName) == strlen("hold_butt_slide_stop")) {
+        return ACT_HOLD_BUTT_SLIDE_STOP;
+    }
+    else if(strstr(actName,"walking") && strlen(actName) == strlen("walking")) {
+        return ACT_WALKING;
+    }
+    else if(strstr(actName,"hold_walking") && strlen(actName) == strlen("hold_walking")) {
+        return ACT_HOLD_WALKING;
+    }
+    else if(strstr(actName,"turning_around") && strlen(actName) == strlen("turning_around")) {
+        return ACT_TURNING_AROUND;
+    }
+    else if(strstr(actName,"finish_turning_around") && strlen(actName) == strlen("finish_turning_around")) {
+        return ACT_FINISH_TURNING_AROUND;
+    }
+    else if(strstr(actName,"braking") && strlen(actName) == strlen("braking")) {
+        return ACT_BRAKING;
+    }
+    else if(strstr(actName,"riding_shell_ground") && strlen(actName) == strlen("riding_shell_ground")) {
+        return ACT_RIDING_SHELL_GROUND;
+    }
+    else if(strstr(actName,"hold_heavy_walking") && strlen(actName) == strlen("hold_heavy_walking")) {
+        return ACT_HOLD_HEAVY_WALKING;
+    }
+    else if(strstr(actName,"crawling") && strlen(actName) == strlen("crawling")) {
+        return ACT_CRAWLING;
+    }
+    else if(strstr(actName,"burning_ground") && strlen(actName) == strlen("burning_ground")) {
+        return ACT_BURNING_GROUND;
+    }
+    else if(strstr(actName,"decelerating") && strlen(actName) == strlen("decelerating")) {
+        return ACT_DECELERATING;
+    }
+    else if(strstr(actName,"hold_decelerating") && strlen(actName) == strlen("hold_decelerating")) {
+        return ACT_HOLD_DECELERATING;
+    }
+    else if(strstr(actName,"begin_sliding") && strlen(actName) == strlen("begin_sliding")) {
+        return ACT_BEGIN_SLIDING;
+    }
+    else if(strstr(actName,"hold_begin_sliding") && strlen(actName) == strlen("hold_begin_sliding")) {
+        return ACT_HOLD_BEGIN_SLIDING;
+    }
+    else if(strstr(actName,"butt_slide") && strlen(actName) == strlen("butt_slide")) {
+        return ACT_BUTT_SLIDE;
+    }
+    else if(strstr(actName,"stomach_slide") && strlen(actName) == strlen("stomach_slide")) {
+        return ACT_STOMACH_SLIDE;
+    }
+    else if(strstr(actName,"hold_butt_slide") && strlen(actName) == strlen("hold_butt_slide")) {
+        return ACT_HOLD_BUTT_SLIDE;
+    }
+    else if(strstr(actName,"hold_stomach_slide") && strlen(actName) == strlen("hold_stomach_slide")) {
+        return ACT_HOLD_STOMACH_SLIDE;
+    }
+    else if(strstr(actName,"dive_slide") && strlen(actName) == strlen("dive_slide")) {
+        return ACT_DIVE_SLIDE;
+    }
+    else if(strstr(actName,"move_punching") && strlen(actName) == strlen("move_punching")) {
+        return ACT_MOVE_PUNCHING;
+    }
+    else if(strstr(actName,"crouch_slide") && strlen(actName) == strlen("crouch_slide")) {
+        return ACT_CROUCH_SLIDE;
+    }
+    else if(strstr(actName,"slide_kick_slide") && strlen(actName) == strlen("slide_kick_slide")) {
+        return ACT_SLIDE_KICK_SLIDE;
+    }
+    else if(strstr(actName,"hard_backward_ground_kb") && strlen(actName) == strlen("hard_backward_ground_kb")) {
+        return ACT_HARD_BACKWARD_GROUND_KB;
+    }
+    else if(strstr(actName,"hard_forward_ground_kb") && strlen(actName) == strlen("hard_forward_ground_kb")) {
+        return ACT_HARD_FORWARD_GROUND_KB;
+    }
+    else if(strstr(actName,"backward_ground_kb") && strlen(actName) == strlen("backward_ground_kb")) {
+        return ACT_BACKWARD_GROUND_KB;
+    }
+    else if(strstr(actName,"forward_ground_kb") && strlen(actName) == strlen("forward_ground_kb")) {
+        return ACT_FORWARD_GROUND_KB;
+    }
+    else if(strstr(actName,"soft_backward_ground_kb") && strlen(actName) == strlen("soft_backward_ground_kb")) {
+        return ACT_SOFT_BACKWARD_GROUND_KB;
+    }
+    else if(strstr(actName,"soft_forward_ground_kb") && strlen(actName) == strlen("soft_forward_ground_kb")) {
+        return ACT_SOFT_FORWARD_GROUND_KB;
+    }
+    else if(strstr(actName,"ground_bonk") && strlen(actName) == strlen("ground_bonk")) {
+        return ACT_GROUND_BONK;
+    }
+    else if(strstr(actName,"death_exit_land") && strlen(actName) == strlen("death_exit_land")) {
+        return ACT_DEATH_EXIT_LAND;
+    }
+    else if(strstr(actName,"jump_land") && strlen(actName) == strlen("jump_land")) {
+        return ACT_JUMP_LAND;
+    }
+    else if(strstr(actName,"freefall_land") && strlen(actName) == strlen("freefall_land")) {
+        return ACT_FREEFALL_LAND;
+    }
+    else if(strstr(actName,"double_jump_land") && strlen(actName) == strlen("double_jump_land")) {
+        return ACT_DOUBLE_JUMP_LAND;
+    }
+    else if(strstr(actName,"side_flip_land") && strlen(actName) == strlen("side_flip_land")) {
+        return ACT_SIDE_FLIP_LAND;
+    }
+    else if(strstr(actName,"hold_jump_land") && strlen(actName) == strlen("hold_jump_land")) {
+        return ACT_HOLD_JUMP_LAND;
+    }
+    else if(strstr(actName,"hold_freefall_land") && strlen(actName) == strlen("hold_freefall_land")) {
+        return ACT_HOLD_FREEFALL_LAND;
+    }
+    else if(strstr(actName,"quicksand_jump_land") && strlen(actName) == strlen("quicksand_jump_land")) {
+        return ACT_QUICKSAND_JUMP_LAND;
+    }
+    else if(strstr(actName,"hold_quicksand_jump_land") && strlen(actName) == strlen("hold_quicksand_jump_land")) {
+        return ACT_HOLD_QUICKSAND_JUMP_LAND;
+    }
+    else if(strstr(actName,"triple_jump_land") && strlen(actName) == strlen("triple_jump_land")) {
+        return ACT_TRIPLE_JUMP_LAND;
+    }
+    else if(strstr(actName,"long_jump_land") && strlen(actName) == strlen("long_jump_land")) {
+        return ACT_LONG_JUMP_LAND;
+    }
+    else if(strstr(actName,"backflip_land") && strlen(actName) == strlen("backflip_land")) {
+        return ACT_BACKFLIP_LAND;
+    }
+    else if(strstr(actName,"jump") && strlen(actName) == strlen("jump")) {
+        return ACT_JUMP;
+    }
+    else if(strstr(actName,"double_jump") && strlen(actName) == strlen("double_jump")) {
+        return ACT_DOUBLE_JUMP;
+    }
+    else if(strstr(actName,"triple_jump") && strlen(actName) == strlen("triple_jump")) {
+        return ACT_TRIPLE_JUMP;
+    }
+    else if(strstr(actName,"backflip") && strlen(actName) == strlen("backflip")) {
+        return ACT_BACKFLIP;
+    }
+    else if(strstr(actName,"steep_jump") && strlen(actName) == strlen("steep_jump")) {
+        return ACT_STEEP_JUMP;
+    }
+    else if(strstr(actName,"wall_kick_air") && strlen(actName) == strlen("wall_kick_air")) {
+        return ACT_WALL_KICK_AIR;
+    }
+    else if(strstr(actName,"side_flip") && strlen(actName) == strlen("side_flip")) {
+        return ACT_SIDE_FLIP;
+    }
+    else if(strstr(actName,"long_jump") && strlen(actName) == strlen("long_jump")) {
+        return ACT_LONG_JUMP;
+    }
+    else if(strstr(actName,"water_jump") && strlen(actName) == strlen("water_jump")) {
+        return ACT_WATER_JUMP;
+    }
+    else if(strstr(actName,"dive") && strlen(actName) == strlen("dive")) {
+        return ACT_DIVE;
+    }
+    else if(strstr(actName,"freefall") && strlen(actName) == strlen("freefall")) {
+        return ACT_FREEFALL;
+    }
+    else if(strstr(actName,"top_of_pole_jump") && strlen(actName) == strlen("top_of_pole_jump")) {
+        return ACT_TOP_OF_POLE_JUMP;
+    }
+    else if(strstr(actName,"butt_slide_air") && strlen(actName) == strlen("butt_slide_air")) {
+        return ACT_BUTT_SLIDE_AIR;
+    }
+    else if(strstr(actName,"flying_triple_jump") && strlen(actName) == strlen("flying_triple_jump")) {
+        return ACT_FLYING_TRIPLE_JUMP;
+    }
+    else if(strstr(actName,"shot_from_cannon") && strlen(actName) == strlen("shot_from_cannon")) {
+        return ACT_SHOT_FROM_CANNON;
+    }
+    else if(strstr(actName,"flying") && strlen(actName) == strlen("flying")) {
+        return ACT_FLYING;
+    }
+    else if(strstr(actName,"riding_shell_jump") && strlen(actName) == strlen("riding_shell_jump")) {
+        return ACT_RIDING_SHELL_JUMP;
+    }
+    else if(strstr(actName,"riding_shell_fall") && strlen(actName) == strlen("riding_shell_fall")) {
+        return ACT_RIDING_SHELL_FALL;
+    }
+    else if(strstr(actName,"vertical_wind") && strlen(actName) == strlen("vertical_wind")) {
+        return ACT_VERTICAL_WIND;
+    }
+    else if(strstr(actName,"hold_jump") && strlen(actName) == strlen("hold_jump")) {
+        return ACT_HOLD_JUMP;
+    }
+    else if(strstr(actName,"hold_freefall") && strlen(actName) == strlen("hold_freefall")) {
+        return ACT_HOLD_FREEFALL;
+    }
+    else if(strstr(actName,"hold_butt_slide_air") && strlen(actName) == strlen("hold_butt_slide_air")) {
+        return ACT_HOLD_BUTT_SLIDE_AIR;
+    }
+    else if(strstr(actName,"hold_water_jump") && strlen(actName) == strlen("hold_water_jump")) {
+        return ACT_HOLD_WATER_JUMP;
+    }
+    else if(strstr(actName,"twirling") && strlen(actName) == strlen("twirling")) {
+        return ACT_TWIRLING;
+    }
+    else if(strstr(actName,"forward_rollout") && strlen(actName) == strlen("forward_rollout")) {
+        return ACT_FORWARD_ROLLOUT;
+    }
+    else if(strstr(actName,"air_hit_wall") && strlen(actName) == strlen("air_hit_wall")) {
+        return ACT_AIR_HIT_WALL;
+    }
+    else if(strstr(actName,"riding_hoot") && strlen(actName) == strlen("riding_hoot")) {
+        return ACT_RIDING_HOOT;
+    }
+    else if(strstr(actName,"ground_pound") && strlen(actName) == strlen("ground_pound")) {
+        return ACT_GROUND_POUND;
+    }
+    else if(strstr(actName,"slide_kick") && strlen(actName) == strlen("slide_kick")) {
+        return ACT_SLIDE_KICK;
+    }
+    else if(strstr(actName,"air_throw") && strlen(actName) == strlen("air_throw")) {
+        return ACT_AIR_THROW;
+    }
+    else if(strstr(actName,"jump_kick") && strlen(actName) == strlen("jump_kick")) {
+        return ACT_JUMP_KICK;
+    }
+    else if(strstr(actName,"backward_rollout") && strlen(actName) == strlen("backward_rollout")) {
+        return ACT_BACKWARD_ROLLOUT;
+    }
+    else if(strstr(actName,"crazy_box_bounce") && strlen(actName) == strlen("crazy_box_bounce")) {
+        return ACT_CRAZY_BOX_BOUNCE;
+    }
+    else if(strstr(actName,"special_triple_jump") && strlen(actName) == strlen("special_triple_jump")) {
+        return ACT_SPECIAL_TRIPLE_JUMP;
+    }
+    else if(strstr(actName,"backward_air_kb") && strlen(actName) == strlen("backward_air_kb")) {
+        return ACT_BACKWARD_AIR_KB;
+    }
+    else if(strstr(actName,"forward_air_kb") && strlen(actName) == strlen("forward_air_kb")) {
+        return ACT_FORWARD_AIR_KB;
+    }
+    else if(strstr(actName,"hard_forward_air_kb") && strlen(actName) == strlen("hard_forward_air_kb")) {
+        return ACT_HARD_FORWARD_AIR_KB;
+    }
+    else if(strstr(actName,"hard_backward_air_kb") && strlen(actName) == strlen("hard_backward_air_kb")) {
+        return ACT_HARD_BACKWARD_AIR_KB;
+    }
+    else if(strstr(actName,"burning_jump") && strlen(actName) == strlen("burning_jump")) {
+        return ACT_BURNING_JUMP;
+    }
+    else if(strstr(actName,"burning_fall") && strlen(actName) == strlen("burning_fall")) {
+        return ACT_BURNING_FALL;
+    }
+    else if(strstr(actName,"soft_bonk") && strlen(actName) == strlen("soft_bonk")) {
+        return ACT_SOFT_BONK;
+    }
+    else if(strstr(actName,"lava_boost") && strlen(actName) == strlen("lava_boost")) {
+        return ACT_LAVA_BOOST;
+    }
+    else if(strstr(actName,"getting_blown") && strlen(actName) == strlen("getting_blown")) {
+        return ACT_GETTING_BLOWN;
+    }
+    else if(strstr(actName,"thrown_forward") && strlen(actName) == strlen("thrown_forward")) {
+        return ACT_THROWN_FORWARD;
+    }
+    else if(strstr(actName,"thrown_backward") && strlen(actName) == strlen("thrown_backward")) {
+        return ACT_THROWN_BACKWARD;
+    }
+    else if(strstr(actName,"water_idle") && strlen(actName) == strlen("water_idle")) {
+        return ACT_WATER_IDLE;
+    }
+    else if(strstr(actName,"hold_water_idle") && strlen(actName) == strlen("hold_water_idle")) {
+        return ACT_HOLD_WATER_IDLE;
+    }
+    else if(strstr(actName,"water_action_end") && strlen(actName) == strlen("water_action_end")) {
+        return ACT_WATER_ACTION_END;
+    }
+    else if(strstr(actName,"hold_water_action_end") && strlen(actName) == strlen("hold_water_action_end")) {
+        return ACT_HOLD_WATER_ACTION_END;
+    }
+    else if(strstr(actName,"drowning") && strlen(actName) == strlen("drowning")) {
+        return ACT_DROWNING;
+    }
+    else if(strstr(actName,"backward_water_kb") && strlen(actName) == strlen("backward_water_kb")) {
+        return ACT_BACKWARD_WATER_KB;
+    }
+    else if(strstr(actName,"forward_water_kb") && strlen(actName) == strlen("forward_water_kb")) {
+        return ACT_FORWARD_WATER_KB;
+    }
+    else if(strstr(actName,"water_death") && strlen(actName) == strlen("water_death")) {
+        return ACT_WATER_DEATH;
+    }
+    else if(strstr(actName,"water_shocked") && strlen(actName) == strlen("water_shocked")) {
+        return ACT_WATER_SHOCKED;
+    }
+    else if(strstr(actName,"breaststroke") && strlen(actName) == strlen("breaststroke")) {
+        return ACT_BREASTSTROKE;
+    }
+    else if(strstr(actName,"swimming_end") && strlen(actName) == strlen("swimming_end")) {
+        return ACT_SWIMMING_END;
+    }
+    else if(strstr(actName,"flutter_kick") && strlen(actName) == strlen("flutter_kick")) {
+        return ACT_FLUTTER_KICK;
+    }
+    else if(strstr(actName,"hold_breaststroke") && strlen(actName) == strlen("hold_breaststroke")) {
+        return ACT_HOLD_BREASTSTROKE;
+    }
+    else if(strstr(actName,"hold_swimming_end") && strlen(actName) == strlen("hold_swimming_end")) {
+        return ACT_HOLD_SWIMMING_END;
+    }
+    else if(strstr(actName,"hold_flutter_kick") && strlen(actName) == strlen("hold_flutter_kick")) {
+        return ACT_HOLD_FLUTTER_KICK;
+    }
+    else if(strstr(actName,"water_shell_swimming") && strlen(actName) == strlen("water_shell_swimming")) {
+        return ACT_WATER_SHELL_SWIMMING;
+    }
+    else if(strstr(actName,"water_throw") && strlen(actName) == strlen("water_throw")) {
+        return ACT_WATER_THROW;
+    }
+    else if(strstr(actName,"water_punch") && strlen(actName) == strlen("water_punch")) {
+        return ACT_WATER_PUNCH;
+    }
+    else if(strstr(actName,"water_plunge") && strlen(actName) == strlen("water_plunge")) {
+        return ACT_WATER_PLUNGE;
+    }
+    else if(strstr(actName,"caught_in_whirlpool") && strlen(actName) == strlen("caught_in_whirlpool")) {
+        return ACT_CAUGHT_IN_WHIRLPOOL;
+    }
+    else if(strstr(actName,"metal_water_standing") && strlen(actName) == strlen("metal_water_standing")) {
+        return ACT_METAL_WATER_STANDING;
+    }
+    else if(strstr(actName,"hold_metal_water_standing") && strlen(actName) == strlen("hold_metal_water_standing")) {
+        return ACT_HOLD_METAL_WATER_STANDING;
+    }
+    else if(strstr(actName,"metal_water_walking") && strlen(actName) == strlen("metal_water_walking")) {
+        return ACT_METAL_WATER_WALKING;
+    }
+    else if(strstr(actName,"hold_metal_water_walking") && strlen(actName) == strlen("hold_metal_water_walking")) {
+        return ACT_HOLD_METAL_WATER_WALKING;
+    }
+    else if(strstr(actName,"metal_water_falling") && strlen(actName) == strlen("metal_water_falling")) {
+        return ACT_METAL_WATER_FALLING;
+    }
+    else if(strstr(actName,"hold_metal_water_falling") && strlen(actName) == strlen("hold_metal_water_falling")) {
+        return ACT_HOLD_METAL_WATER_FALLING;
+    }
+    else if(strstr(actName,"metal_water_fall_land") && strlen(actName) == strlen("metal_water_fall_land")) {
+        return ACT_METAL_WATER_FALL_LAND;
+    }
+    else if(strstr(actName,"hold_metal_water_fall_land") && strlen(actName) == strlen("hold_metal_water_fall_land")) {
+        return ACT_HOLD_METAL_WATER_FALL_LAND;
+    }
+    else if(strstr(actName,"metal_water_jump") && strlen(actName) == strlen("metal_water_jump")) {
+        return ACT_METAL_WATER_JUMP;
+    }
+    else if(strstr(actName,"hold_metal_water_jump") && strlen(actName) == strlen("hold_metal_water_jump")) {
+        return ACT_HOLD_METAL_WATER_JUMP;
+    }
+    else if(strstr(actName,"metal_water_jump_land") && strlen(actName) == strlen("metal_water_jump_land")) {
+        return ACT_METAL_WATER_JUMP_LAND;
+    }
+    else if(strstr(actName,"hold_metal_water_jump_land") && strlen(actName) == strlen("hold_metal_water_jump_land")) {
+        return ACT_HOLD_METAL_WATER_JUMP_LAND;
+    }
+    else if(strstr(actName,"disappeared") && strlen(actName) == strlen("disappeared")) {
+        return ACT_DISAPPEARED;
+    }
+    else if(strstr(actName,"intro_cutscene") && strlen(actName) == strlen("intro_cutscene")) {
+        return ACT_INTRO_CUTSCENE;
+    }
+    else if(strstr(actName,"star_dance_exit") && strlen(actName) == strlen("star_dance_exit")) {
+        return ACT_STAR_DANCE_EXIT;
+    }
+    else if(strstr(actName,"star_dance_water") && strlen(actName) == strlen("star_dance_water")) {
+        return ACT_STAR_DANCE_WATER;
+    }
+    else if(strstr(actName,"fall_after_star_grab") && strlen(actName) == strlen("fall_after_star_grab")) {
+        return ACT_FALL_AFTER_STAR_GRAB;
+    }
+    else if(strstr(actName,"reading_automatic_dialog") && strlen(actName) == strlen("reading_automatic_dialog")) {
+        return ACT_READING_AUTOMATIC_DIALOG;
+    }
+    else if(strstr(actName,"reading_npc_dialog") && strlen(actName) == strlen("reading_npc_dialog")) {
+        return ACT_READING_NPC_DIALOG;
+    }
+    else if(strstr(actName,"star_dance_no_exit") && strlen(actName) == strlen("star_dance_no_exit")) {
+        return ACT_STAR_DANCE_NO_EXIT;
+    }
+    else if(strstr(actName,"reading_sign") && strlen(actName) == strlen("reading_sign")) {
+        return ACT_READING_SIGN;
+    }
+    else if(strstr(actName,"grand_star_cutscene") && strlen(actName) == strlen("grand_star_cutscene")) {
+        return ACT_GRAND_STAR_CUTSCENE;
+    }
+    else if(strstr(actName,"waiting_for_dialog") && strlen(actName) == strlen("waiting_for_dialog")) {
+        return ACT_WAITING_FOR_DIALOG;
+    }
+    else if(strstr(actName,"debug_free_move") && strlen(actName) == strlen("debug_free_move")) {
+        return ACT_DEBUG_FREE_MOVE;
+    }
+    else if(strstr(actName,"standing_death") && strlen(actName) == strlen("standing_death")) {
+        return ACT_STANDING_DEATH;
+    }
+    else if(strstr(actName,"quicksand_death") && strlen(actName) == strlen("quicksand_death")) {
+        return ACT_QUICKSAND_DEATH;
+    }
+    else if(strstr(actName,"electrocution") && strlen(actName) == strlen("electrocution")) {
+        return ACT_ELECTROCUTION;
+    }
+    else if(strstr(actName,"suffocation") && strlen(actName) == strlen("suffocation")) {
+        return ACT_SUFFOCATION;
+    }
+    else if(strstr(actName,"death_on_stomach") && strlen(actName) == strlen("death_on_stomach")) {
+        return ACT_DEATH_ON_STOMACH;
+    }
+    else if(strstr(actName,"death_on_back") && strlen(actName) == strlen("death_on_back")) {
+        return ACT_DEATH_ON_BACK;
+    }
+    else if(strstr(actName,"eaten_by_bubba") && strlen(actName) == strlen("eaten_by_bubba")) {
+        return ACT_EATEN_BY_BUBBA;
+    }
+    else if(strstr(actName,"peach_cutscene") && strlen(actName) == strlen("peach_cutscene")) {
+        return ACT_PEACH_CUTSCENE;
+    }
+    else if(strstr(actName,"credits") && strlen(actName) == strlen("credits")) {
+        return ACT_CREDITS;
+    }
+    else if(strstr(actName,"waving") && strlen(actName) == strlen("waving")) {
+        return ACT_WAVING;
+    }
+    else if(strstr(actName,"pulling_door") && strlen(actName) == strlen("pulling_door")) {
+        return ACT_PULLING_DOOR;
+    }
+    else if(strstr(actName,"pushing_door") && strlen(actName) == strlen("pushing_door")) {
+        return ACT_PUSHING_DOOR;
+    }
+    else if(strstr(actName,"warp_door_spawn") && strlen(actName) == strlen("warp_door_spawn")) {
+        return ACT_WARP_DOOR_SPAWN;
+    }
+    else if(strstr(actName,"emerge_from_pipe") && strlen(actName) == strlen("emerge_from_pipe")) {
+        return ACT_EMERGE_FROM_PIPE;
+    }
+    else if(strstr(actName,"spawn_spin_airborne") && strlen(actName) == strlen("spawn_spin_airborne")) {
+        return ACT_SPAWN_SPIN_AIRBORNE;
+    }
+    else if(strstr(actName,"spawn_spin_landing") && strlen(actName) == strlen("spawn_spin_landing")) {
+        return ACT_SPAWN_SPIN_LANDING;
+    }
+    else if(strstr(actName,"exit_airborne") && strlen(actName) == strlen("exit_airborne")) {
+        return ACT_EXIT_AIRBORNE;
+    }
+    else if(strstr(actName,"exit_land_save_dialog") && strlen(actName) == strlen("exit_land_save_dialog")) {
+        return ACT_EXIT_LAND_SAVE_DIALOG;
+    }
+    else if(strstr(actName,"death_exit") && strlen(actName) == strlen("death_exit")) {
+        return ACT_DEATH_EXIT;
+    }
+    else if(strstr(actName,"death_exit_(unused)") && strlen(actName) == strlen("death_exit_(unused)")) {
+        return ACT_DEATH_EXIT_(UNUSED);
+    }
+    else if(strstr(actName,"falling_death_exit") && strlen(actName) == strlen("falling_death_exit")) {
+        return ACT_FALLING_DEATH_EXIT;
+    }
+    else if(strstr(actName,"special_exit_airborne") && strlen(actName) == strlen("special_exit_airborne")) {
+        return ACT_SPECIAL_EXIT_AIRBORNE;
+    }
+    else if(strstr(actName,"special_death_exit") && strlen(actName) == strlen("special_death_exit")) {
+        return ACT_SPECIAL_DEATH_EXIT;
+    }
+    else if(strstr(actName,"falling_exit_airborne") && strlen(actName) == strlen("falling_exit_airborne")) {
+        return ACT_FALLING_EXIT_AIRBORNE;
+    }
+    else if(strstr(actName,"unlocking_key_door") && strlen(actName) == strlen("unlocking_key_door")) {
+        return ACT_UNLOCKING_KEY_DOOR;
+    }
+    else if(strstr(actName,"unlocking_star_door") && strlen(actName) == strlen("unlocking_star_door")) {
+        return ACT_UNLOCKING_STAR_DOOR;
+    }
+    else if(strstr(actName,"entering_star_door") && strlen(actName) == strlen("entering_star_door")) {
+        return ACT_ENTERING_STAR_DOOR;
+    }
+    else if(strstr(actName,"spawn_no_spin_airborne") && strlen(actName) == strlen("spawn_no_spin_airborne")) {
+        return ACT_SPAWN_NO_SPIN_AIRBORNE;
+    }
+    else if(strstr(actName,"spawn_no_spin_landing") && strlen(actName) == strlen("spawn_no_spin_landing")) {
+        return ACT_SPAWN_NO_SPIN_LANDING;
+    }
+    else if(strstr(actName,"bbh_enter_jump") && strlen(actName) == strlen("bbh_enter_jump")) {
+        return ACT_BBH_ENTER_JUMP;
+    }
+    else if(strstr(actName,"bbh_enter_spin") && strlen(actName) == strlen("bbh_enter_spin")) {
+        return ACT_BBH_ENTER_SPIN;
+    }
+    else if(strstr(actName,"teleport_fade_out") && strlen(actName) == strlen("teleport_fade_out")) {
+        return ACT_TELEPORT_FADE_OUT;
+    }
+    else if(strstr(actName,"teleport_fade_in") && strlen(actName) == strlen("teleport_fade_in")) {
+        return ACT_TELEPORT_FADE_IN;
+    }
+    else if(strstr(actName,"shocked") && strlen(actName) == strlen("shocked")) {
+        return ACT_SHOCKED;
+    }
+    else if(strstr(actName,"squished") && strlen(actName) == strlen("squished")) {
+        return ACT_SQUISHED;
+    }
+    else if(strstr(actName,"head_stuck_in_ground") && strlen(actName) == strlen("head_stuck_in_ground")) {
+        return ACT_HEAD_STUCK_IN_GROUND;
+    }
+    else if(strstr(actName,"butt_stuck_in_ground") && strlen(actName) == strlen("butt_stuck_in_ground")) {
+        return ACT_BUTT_STUCK_IN_GROUND;
+    }
+    else if(strstr(actName,"feet_stuck_in_ground") && strlen(actName) == strlen("feet_stuck_in_ground")) {
+        return ACT_FEET_STUCK_IN_GROUND;
+    }
+    else if(strstr(actName,"putting_on_cap") && strlen(actName) == strlen("putting_on_cap")) {
+        return ACT_PUTTING_ON_CAP;
+    }
+    else if(strstr(actName,"holding_pole") && strlen(actName) == strlen("holding_pole")) {
+        return ACT_HOLDING_POLE;
+    }
+    else if(strstr(actName,"grab_pole_slow") && strlen(actName) == strlen("grab_pole_slow")) {
+        return ACT_GRAB_POLE_SLOW;
+    }
+    else if(strstr(actName,"grab_pole_fast") && strlen(actName) == strlen("grab_pole_fast")) {
+        return ACT_GRAB_POLE_FAST;
+    }
+    else if(strstr(actName,"climbing_pole") && strlen(actName) == strlen("climbing_pole")) {
+        return ACT_CLIMBING_POLE;
+    }
+    else if(strstr(actName,"top_of_pole_transition") && strlen(actName) == strlen("top_of_pole_transition")) {
+        return ACT_TOP_OF_POLE_TRANSITION;
+    }
+    else if(strstr(actName,"top_of_pole") && strlen(actName) == strlen("top_of_pole")) {
+        return ACT_TOP_OF_POLE;
+    }
+    else if(strstr(actName,"start_hanging") && strlen(actName) == strlen("start_hanging")) {
+        return ACT_START_HANGING;
+    }
+    else if(strstr(actName,"hanging") && strlen(actName) == strlen("hanging")) {
+        return ACT_HANGING;
+    }
+    else if(strstr(actName,"hang_moving") && strlen(actName) == strlen("hang_moving")) {
+        return ACT_HANG_MOVING;
+    }
+    else if(strstr(actName,"ledge_grab") && strlen(actName) == strlen("ledge_grab")) {
+        return ACT_LEDGE_GRAB;
+    }
+    else if(strstr(actName,"ledge_climb_slow_1") && strlen(actName) == strlen("ledge_climb_slow_1")) {
+        return ACT_LEDGE_CLIMB_SLOW_1;
+    }
+    else if(strstr(actName,"ledge_climb_slow_2") && strlen(actName) == strlen("ledge_climb_slow_2")) {
+        return ACT_LEDGE_CLIMB_SLOW_2;
+    }
+    else if(strstr(actName,"ledge_climb_down") && strlen(actName) == strlen("ledge_climb_down")) {
+        return ACT_LEDGE_CLIMB_DOWN;
+    }
+    else if(strstr(actName,"ledge_climb_fast") && strlen(actName) == strlen("ledge_climb_fast")) {
+        return ACT_LEDGE_CLIMB_FAST;
+    }
+    else if(strstr(actName,"grabbed") && strlen(actName) == strlen("grabbed")) {
+        return ACT_GRABBED;
+    }
+    else if(strstr(actName,"in_cannon") && strlen(actName) == strlen("in_cannon")) {
+        return ACT_IN_CANNON;
+    }
+    else if(strstr(actName,"tornado_twirling") && strlen(actName) == strlen("tornado_twirling")) {
+        return ACT_TORNADO_TWIRLING;
+    }
+    else if(strstr(actName,"punching") && strlen(actName) == strlen("punching")) {
+        return ACT_PUNCHING;
+    }
+    else if(strstr(actName,"picking_up") && strlen(actName) == strlen("picking_up")) {
+        return ACT_PICKING_UP;
+    }
+    else if(strstr(actName,"dive_picking_up") && strlen(actName) == strlen("dive_picking_up")) {
+        return ACT_DIVE_PICKING_UP;
+    }
+    else if(strstr(actName,"stomach_slide_stop") && strlen(actName) == strlen("stomach_slide_stop")) {
+        return ACT_STOMACH_SLIDE_STOP;
+    }
+    else if(strstr(actName,"placing_down") && strlen(actName) == strlen("placing_down")) {
+        return ACT_PLACING_DOWN;
+    }
+    else if(strstr(actName,"throwing") && strlen(actName) == strlen("throwing")) {
+        return ACT_THROWING;
+    }
+    else if(strstr(actName,"heavy_throw") && strlen(actName) == strlen("heavy_throw")) {
+        return ACT_HEAVY_THROW;
+    }
+    else if(strstr(actName,"picking_up_bowser") && strlen(actName) == strlen("picking_up_bowser")) {
+        return ACT_PICKING_UP_BOWSER;
+    }
+    else if(strstr(actName,"holding_bowser") && strlen(actName) == strlen("holding_bowser")) {
+        return ACT_HOLDING_BOWSER;
+    }
+    else if(strstr(actName,"releasing_bowser") && strlen(actName) == strlen("releasing_bowser")) {
+        return ACT_RELEASING_BOWSER;
+    }
+    return ACT_ANY;
 }
 
 
