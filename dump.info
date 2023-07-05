@@ -1,0 +1,170 @@
+x: 14	y: 106	...C(....)...D(....) mariox: 5491.990234 marioy: 1024.000000 marioz: 451.553589 hspd: 8.913954 vspd: 0.000000 yawfacing: 62571 yawintended: 62571 action: walking
+x: 14	y: 106	a..C(....)...D(....) mariox: 5489.630859 marioy: 1068.228516 marioz: 459.491333 hspd: 8.281157 vspd: 40.228489 yawfacing: 62571 yawintended: 62544 action: jump
+x: 14	y: 106	a..C(....)...D(....) mariox: 5486.931641 marioy: 1108.457031 marioz: 468.528198 hspd: 9.431141 vspd: 36.228489 yawfacing: 62571 yawintended: 62535 action: jump
+x: 14	y: 106	a..C(....)...D(....) mariox: 5483.894531 marioy: 1144.685547 marioz: 478.664307 hspd: 10.581112 vspd: 32.228489 yawfacing: 62571 yawintended: 62515 action: jump
+x: 14	y: 106	a..C(....)...D(....) mariox: 5480.519531 marioy: 1176.914062 marioz: 489.899536 hspd: 11.731068 vspd: 28.228489 yawfacing: 62571 yawintended: 62496 action: jump
+x: 14	y: 106	a..C(....)...D(....) mariox: 5476.804688 marioy: 1205.142578 marioz: 502.233887 hspd: 12.881003 vspd: 24.228489 yawfacing: 62571 yawintended: 62476 action: jump
+x: 14	y: 106	a..C(....)...D(....) mariox: 5472.738281 marioy: 1229.371094 marioz: 515.663025 hspd: 14.030890 vspd: 20.228489 yawfacing: 62571 yawintended: 62447 action: jump
+x: 14	y: 106	...C(....)...D(....) mariox: 5468.332031 marioy: 1249.599609 marioz: 530.191101 hspd: 15.180747 vspd: 5.057122 yawfacing: 62571 yawintended: 62428 action: jump
+x: 14	y: 106	...C(....)...D(....) mariox: 5463.574219 marioy: 1254.656738 marioz: 545.813904 hspd: 16.330534 vspd: 1.057122 yawfacing: 62571 yawintended: 62398 action: jump
+x: 14	y: 106	...C(....)...D(....) mariox: 5458.462891 marioy: 1255.713867 marioz: 562.531433 hspd: 17.480236 vspd: -2.942878 yawfacing: 62571 yawintended: 62369 action: jump
+x: 14	y: 106	...C(....)...D(....) mariox: 5453.013672 marioy: 1252.770996 marioz: 580.347595 hspd: 18.629890 vspd: -6.942878 yawfacing: 62571 yawintended: 62350 action: jump
+x: 14	y: 106	...C(....)...D(....) mariox: 5447.210938 marioy: 1245.828125 marioz: 599.258240 hspd: 19.779438 vspd: -10.942878 yawfacing: 62571 yawintended: 62321 action: jump
+x: 14	y: 106	...C(....)...D(....) mariox: 5441.070312 marioy: 1234.885254 marioz: 619.267761 hspd: 20.928928 vspd: -14.942878 yawfacing: 62571 yawintended: 62302 action: jump
+x: 14	y: 106	...C(....)...D(....) mariox: 5434.576172 marioy: 1219.942383 marioz: 640.371521 hspd: 22.078291 vspd: -18.942879 yawfacing: 62571 yawintended: 62273 action: jump
+x: 14	y: 106	...C(....)...D(....) mariox: 5427.744141 marioy: 1200.999512 marioz: 662.573669 hspd: 23.227585 vspd: -22.942879 yawfacing: 62571 yawintended: 62253 action: jump
+x: 14	y: 106	a..C(....)...D(....) mariox: 5420.558594 marioy: 1178.056641 marioz: 685.869812 hspd: 24.376730 vspd: -26.942879 yawfacing: 62571 yawintended: 62225 action: jump
+x: 14	y: 106	...C(....)...D(....) mariox: 5413.035156 marioy: 1151.113770 marioz: 710.264343 hspd: 25.525797 vspd: -30.942879 yawfacing: 62571 yawintended: 62205 action: jump
+x: 10	y: 106	a..C(....)...D(....) mariox: 5405.541016 marioy: 1120.170898 marioz: 735.865906 hspd: 26.675795 vspd: -34.942879 yawfacing: 62571 yawintended: 62593 action: jump
+x: 10	y: 106	a..C(....)...D(....) mariox: 5397.708984 marioy: 1085.228027 marioz: 762.566833 hspd: 27.825794 vspd: -38.942879 yawfacing: 62571 yawintended: 62573 action: jump
+x: 10	y: 106	...C(....)...D(....) mariox: 5389.523438 marioy: 1046.285156 marioz: 790.362488 hspd: 28.975786 vspd: -42.942879 yawfacing: 62571 yawintended: 62545 action: jump
+x: -27	y: 104	.b.C(....)...D(....) mariox: 5381.966309 marioy: 1024.000000 marioz: 822.599487 hspd: 44.080833 vspd: -46.942879 yawfacing: 62571 yawintended: 65140 action: dive slide
+x: -27	y: 104	ab.C(....)...D(....) mariox: 5371.860840 marioy: 1054.000000 marioz: 865.682983 hspd: 44.185883 vspd: 26.000000 yawfacing: 62571 yawintended: 65131 action: forward rollout
+x: -27	y: 104	a..C(....)...D(....) mariox: 5361.726074 marioy: 1080.000000 marioz: 908.867310 hspd: 44.290932 vspd: 22.000000 yawfacing: 62571 yawintended: 65140 action: forward rollout
+x: -27	y: 104	a..C(....)...D(....) mariox: 5351.562012 marioy: 1102.000000 marioz: 952.152222 hspd: 44.395981 vspd: 18.000000 yawfacing: 62571 yawintended: 65140 action: forward rollout
+x: -27	y: 104	a..C(....)...D(....) mariox: 5341.368652 marioy: 1120.000000 marioz: 995.537964 hspd: 44.501030 vspd: 14.000000 yawfacing: 62571 yawintended: 65140 action: forward rollout
+x: 10	y: 106	a..C(....)...D(....) mariox: 5328.757324 marioy: 1134.000000 marioz: 1038.370972 hspd: 44.651016 vspd: 10.000000 yawfacing: 62571 yawintended: 62525 action: forward rollout
+x: 10	y: 106	a..C(....)...D(....) mariox: 5316.060059 marioy: 1144.000000 marioz: 1081.334839 hspd: 44.800953 vspd: 6.000000 yawfacing: 62571 yawintended: 62487 action: forward rollout
+x: 10	y: 106	a..C(....)...D(....) mariox: 5303.304199 marioy: 1150.000000 marioz: 1124.438354 hspd: 44.950867 vspd: 2.000000 yawfacing: 62571 yawintended: 62459 action: forward rollout
+x: 10	y: 106	a.zC(....)...D(....) mariox: 5290.478027 marioy: 1152.000000 marioz: 1167.676636 hspd: 45.100727 vspd: -2.000000 yawfacing: 62571 yawintended: 62430 action: forward rollout
+x: 10	y: 106	.b.C(....)...D(....) mariox: 5277.565918 marioy: 1150.000000 marioz: 1211.045776 hspd: 45.250473 vspd: -6.000000 yawfacing: 62571 yawintended: 62382 action: forward rollout
+x: 10	y: 106	...C(....)...D(....) mariox: 5264.565918 marioy: 1144.000000 marioz: 1254.545776 hspd: 45.400078 vspd: -10.000000 yawfacing: 62571 yawintended: 62335 action: forward rollout
+x: 10	y: 106	a..C(....)...D(....) mariox: 5251.509277 marioy: 1134.000000 marioz: 1298.184937 hspd: 45.549629 vspd: -14.000000 yawfacing: 62571 yawintended: 62326 action: forward rollout
+x: 10	y: 106	a..C(....)...D(....) mariox: 5238.382324 marioy: 1120.000000 marioz: 1341.958862 hspd: 45.699059 vspd: -18.000000 yawfacing: 62571 yawintended: 62288 action: forward rollout
+x: 10	y: 106	a..C(....)...D(....) mariox: 5225.198730 marioy: 1102.000000 marioz: 1385.871460 hspd: 45.848423 vspd: -22.000000 yawfacing: 62571 yawintended: 62278 action: forward rollout
+x: 10	y: 106	a..C(....)...D(....) mariox: 5211.942871 marioy: 1080.000000 marioz: 1429.918823 hspd: 45.997646 vspd: -26.000000 yawfacing: 62571 yawintended: 62240 action: forward rollout
+x: 10	y: 106	a..C(....)...D(....) mariox: 5198.630371 marioy: 1054.000000 marioz: 1474.104858 hspd: 46.146793 vspd: -30.000000 yawfacing: 62571 yawintended: 62231 action: forward rollout
+x: 10	y: 106	...C(....)...D(....) mariox: 5185.261230 marioy: 1024.000000 marioz: 1518.429565 hspd: 46.295860 vspd: -34.000000 yawfacing: 62571 yawintended: 62212 action: forward rollout
+x: 10	y: 106	.b.C(....)...D(....) mariox: 5171.851074 marioy: 990.000000 marioz: 1562.897339 hspd: 46.444927 vspd: -38.000000 yawfacing: 62571 yawintended: 62203 action: forward rollout
+x: 10	y: 106	...C(....)...D(....) mariox: 5158.368652 marioy: 954.335266 marioz: 1607.499390 hspd: 46.593826 vspd: -42.000000 yawfacing: 62571 yawintended: 62184 action: freefall land stop
+x: 10	y: 106	.b.C(....)...D(....) mariox: 5144.433105 marioy: 974.335266 marioz: 1653.589233 hspd: 48.148808 vspd: 16.000000 yawfacing: 62571 yawintended: 62165 action: dive
+x: 10	y: 106	...C(....)...D(....) mariox: 5130.456543 marioy: 990.335266 marioz: 1699.822144 hspd: 48.297615 vspd: 12.000000 yawfacing: 62571 yawintended: 62156 action: dive
+x: 10	y: 106	...C(....)...D(....) mariox: 5116.407715 marioy: 1002.335266 marioz: 1746.188843 hspd: 48.446232 vspd: 8.000000 yawfacing: 62571 yawintended: 62137 action: dive
+x: 10	y: 106	...C(....)...D(....) mariox: 5102.317871 marioy: 1010.335266 marioz: 1792.698120 hspd: 48.594849 vspd: 4.000000 yawfacing: 62571 yawintended: 62128 action: dive
+x: 10	y: 106	...C(....)...D(....) mariox: 5088.171387 marioy: 1014.335266 marioz: 1839.345581 hspd: 48.743366 vspd: 0.000000 yawfacing: 62571 yawintended: 62118 action: dive
+x: 10	y: 106	...C(....)...D(....) mariox: 5073.983887 marioy: 1014.335266 marioz: 1886.135620 hspd: 48.891884 vspd: -4.000000 yawfacing: 62571 yawintended: 62109 action: dive
+x: 10	y: 106	...C(....)...D(....) mariox: 5059.724121 marioy: 1010.335266 marioz: 1933.059448 hspd: 49.040192 vspd: -8.000000 yawfacing: 62571 yawintended: 62090 action: dive
+x: 10	y: 106	...C(....)...D(....) mariox: 5045.423340 marioy: 1002.335266 marioz: 1980.125366 hspd: 49.188499 vspd: -12.000000 yawfacing: 62571 yawintended: 62081 action: dive
+x: 10	y: 106	...C(....)...D(....) mariox: 5031.081543 marioy: 990.335266 marioz: 2027.333862 hspd: 49.336807 vspd: -16.000000 yawfacing: 62571 yawintended: 62081 action: dive
+x: 10	y: 106	...C(....)...D(....) mariox: 5016.696777 marioy: 974.335266 marioz: 2074.684570 hspd: 49.485115 vspd: -20.000000 yawfacing: 62571 yawintended: 62081 action: dive
+x: 10	y: 106	...C(....)...D(....) mariox: 5002.270996 marioy: 959.407043 marioz: 2122.177734 hspd: 49.633423 vspd: -24.000000 yawfacing: 62571 yawintended: 62081 action: dive slide
+x: 10	y: 106	ab.C(....)...D(....) mariox: 4987.802246 marioy: 989.407043 marioz: 2169.813477 hspd: 49.781731 vspd: 26.000000 yawfacing: 62571 yawintended: 62081 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4973.675293 marioy: 1015.407043 marioz: 2217.705078 hspd: 49.931686 vspd: 22.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4959.505371 marioy: 1037.406982 marioz: 2265.740234 hspd: 50.081642 vspd: 18.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4945.292480 marioy: 1055.406982 marioz: 2313.919922 hspd: 50.231598 vspd: 14.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4931.038574 marioy: 1069.406982 marioz: 2362.243164 hspd: 50.381554 vspd: 10.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4916.741699 marioy: 1079.406982 marioz: 2410.709961 hspd: 50.531509 vspd: 6.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4902.403809 marioy: 1085.406982 marioz: 2459.321289 hspd: 50.681465 vspd: 2.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4888.022949 marioy: 1087.406982 marioz: 2508.076172 hspd: 50.831421 vspd: -2.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4873.599121 marioy: 1085.406982 marioz: 2556.974609 hspd: 50.981377 vspd: -6.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4859.134277 marioy: 1079.406982 marioz: 2606.017578 hspd: 51.131332 vspd: -10.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4844.626465 marioy: 1069.406982 marioz: 2655.204102 hspd: 51.281288 vspd: -14.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4830.077637 marioy: 1055.406982 marioz: 2704.534180 hspd: 51.431244 vspd: -18.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4815.485840 marioy: 1037.406982 marioz: 2754.008789 hspd: 51.581200 vspd: -22.000000 yawfacing: 62571 yawintended: 62498 action: forward rollout
+x: -7	y: 106	a..C(....)...D(....) mariox: 4804.509766 marioy: 1024.000000 marioz: 2791.222412 hspd: 51.731155 vspd: -26.000000 yawfacing: 62571 yawintended: 62498 action: freefall land stop
+x: -7	y: 39	ab.C(....)...D(....) mariox: 4790.197266 marioy: 1044.000000 marioz: 2839.944092 hspd: 50.779949 vspd: 16.000000 yawfacing: 62571 yawintended: 62498 action: jump kick
+x: -7	y: 106	a..C(....)...D(....) mariox: 4775.789062 marioy: 1060.000000 marioz: 2888.793701 hspd: 50.929905 vspd: 12.000000 yawfacing: 62571 yawintended: 62498 action: jump kick
+x: -7	y: 106	a..C(....)...D(....) mariox: 4761.337891 marioy: 1072.000000 marioz: 2937.786865 hspd: 51.079861 vspd: 8.000000 yawfacing: 62571 yawintended: 62498 action: jump kick
+x: -7	y: 106	...C(....)...D(....) mariox: 4746.845703 marioy: 1080.000000 marioz: 2986.923584 hspd: 51.229816 vspd: 4.000000 yawfacing: 62571 yawintended: 62498 action: jump kick
+x: -7	y: 106	a..C(....)...D(....) mariox: 4732.310547 marioy: 1084.000000 marioz: 3036.204834 hspd: 51.379772 vspd: 0.000000 yawfacing: 62571 yawintended: 62498 action: jump kick
+x: -7	y: 106	...C(....)...D(....) mariox: 4717.732422 marioy: 1084.000000 marioz: 3085.629639 hspd: 51.529728 vspd: -4.000000 yawfacing: 62571 yawintended: 62498 action: jump kick
+x: -7	y: 106	...C(....)...D(....) mariox: 4703.113281 marioy: 1080.000000 marioz: 3135.197998 hspd: 51.679684 vspd: -8.000000 yawfacing: 62571 yawintended: 62498 action: jump kick
+x: -7	y: 106	...C(....)...D(....) mariox: 4688.451172 marioy: 1072.000000 marioz: 3184.910889 hspd: 51.829639 vspd: -12.000000 yawfacing: 62571 yawintended: 62498 action: jump kick
+x: -7	y: 106	...C(....)...D(....) mariox: 4673.748047 marioy: 1060.000000 marioz: 3234.767334 hspd: 51.979595 vspd: -16.000000 yawfacing: 62571 yawintended: 62498 action: jump kick
+x: -7	y: 106	...C(....)...D(....) mariox: 4659.001953 marioy: 1044.000000 marioz: 3284.767334 hspd: 52.129551 vspd: -20.000000 yawfacing: 62571 yawintended: 62498 action: jump kick
+x: -7	y: 106	...C(....)...D(....) mariox: 4644.212891 marioy: 1024.000000 marioz: 3334.911865 hspd: 52.279507 vspd: -24.000000 yawfacing: 62571 yawintended: 62498 action: freefall land
+x: 33	y: 102	.b.C(....)...D(....) mariox: 4629.498047 marioy: 1024.000000 marioz: 3385.077881 hspd: 51.233917 vspd: 0.000000 yawfacing: 62571 yawintended: 59638 action: freefall land
+x: -7	y: 106	a..C(....)...D(....) mariox: 4617.845703 marioy: 1088.808594 marioz: 3424.530029 hspd: 41.137089 vspd: 60.808479 yawfacing: 62571 yawintended: 62498 action: double jump
+x: -7	y: 106	a..C(....)...D(....) mariox: 4606.150391 marioy: 1149.617188 marioz: 3464.126709 hspd: 41.287045 vspd: 56.808479 yawfacing: 62571 yawintended: 62498 action: double jump
+x: -7	y: 106	a..C(....)...D(....) mariox: 4594.414062 marioy: 1206.425781 marioz: 3503.866943 hspd: 41.437000 vspd: 52.808479 yawfacing: 62571 yawintended: 62498 action: double jump
+x: -7	y: 106	a..C(....)...D(....) mariox: 4582.634766 marioy: 1259.234375 marioz: 3543.750732 hspd: 41.586956 vspd: 48.808479 yawfacing: 62571 yawintended: 62498 action: double jump
+x: -14	y: 106	a..C(....)...D(....) mariox: 4571.580078 marioy: 1308.042969 marioz: 3583.999756 hspd: 41.733059 vspd: 44.808479 yawfacing: 62571 yawintended: 63331 action: double jump
+x: -7	y: 106	a..C(....)...D(....) mariox: 4559.732422 marioy: 1352.851562 marioz: 3624.172607 hspd: 41.883034 vspd: 40.808479 yawfacing: 62571 yawintended: 62507 action: double jump
+x: -7	y: 106	a..C(....)...D(....) mariox: 4547.828125 marioy: 1393.660156 marioz: 3664.485107 hspd: 42.032990 vspd: 36.808479 yawfacing: 62571 yawintended: 62498 action: double jump
+x: -7	y: 106	a..C(....)...D(....) mariox: 4535.880859 marioy: 1430.468750 marioz: 3704.941162 hspd: 42.182945 vspd: 32.808479 yawfacing: 62571 yawintended: 62498 action: double jump
+x: -7	y: 106	a..C(....)...D(....) mariox: 4523.892578 marioy: 1463.277344 marioz: 3745.540771 hspd: 42.332901 vspd: 28.808479 yawfacing: 62571 yawintended: 62498 action: double jump
+x: -43	y: -94	a..C(....)...D(....) mariox: 4516.539062 marioy: 1492.085938 marioz: 3784.657959 hspd: 39.605141 vspd: 24.808479 yawfacing: 62571 yawintended: 25575 action: double jump
+x: -43	y: -94	a..C(....)...D(....) mariox: 4509.900391 marioy: 1516.894531 marioz: 3821.138428 hspd: 36.873768 vspd: 20.808479 yawfacing: 62571 yawintended: 25631 action: double jump
+x: -43	y: -94	a..C(....)...D(....) mariox: 4504.003906 marioy: 1537.703125 marioz: 3854.988037 hspd: 34.140606 vspd: 16.808479 yawfacing: 62571 yawintended: 25669 action: double jump
+x: -43	y: -94	a..C(....)...D(....) mariox: 4498.835938 marioy: 1554.511719 marioz: 3886.199951 hspd: 31.404789 vspd: 12.808479 yawfacing: 62571 yawintended: 25716 action: double jump
+x: -43	y: -94	a..C(....)...D(....) mariox: 4494.130859 marioy: 1567.320312 marioz: 3915.737061 hspd: 29.667215 vspd: 8.808479 yawfacing: 62571 yawintended: 25753 action: double jump
+x: -43	y: -94	a..C(....)...D(....) mariox: 4489.875000 marioy: 1576.128906 marioz: 3943.592529 hspd: 27.927034 vspd: 4.808479 yawfacing: 62571 yawintended: 25801 action: double jump
+x: -50	y: 123	.b.C(....)...D(....) mariox: 4485.255859 marioy: 1596.128906 marioz: 3972.429443 hspd: 28.971495 vspd: 16.000000 yawfacing: 62571 yawintended: 976 action: jump kick
+x: -50	y: 123	...C(....)...D(....) mariox: 4480.371094 marioy: 1612.128906 marioz: 4002.275146 hspd: 30.014254 vspd: 12.000000 yawfacing: 62571 yawintended: 1014 action: jump kick
+x: 42	y: 99	...C(....)...D(....) mariox: 4468.376953 marioy: 1624.128906 marioz: 4031.142334 hspd: 31.075792 vspd: 8.000000 yawfacing: 62571 yawintended: 58979 action: jump kick
+x: 10	y: 106	...C(....)...D(....) mariox: 4459.367188 marioy: 1652.068848 marioz: 4061.040771 hspd: 31.225395 vspd: 4.000000 yawfacing: 62571 yawintended: 62344 action: freefall land
+x: 8	y: 106	a..C(....)...D(....) mariox: 4450.755859 marioy: 1700.101074 marioz: 4083.064209 hspd: 23.647179 vspd: 44.032444 yawfacing: 61652 yawintended: 62539 action: steep jump
+x: 8	y: 106	...C(....)...D(....) mariox: 4442.316406 marioy: 1744.133301 marioz: 4104.646973 hspd: 23.174236 vspd: 11.008111 yawfacing: 61652 yawintended: 62482 action: steep jump
+x: -18	y: -84	...C(....)...D(....) mariox: 4440.248535 marioy: 1748.539551 marioz: 4109.934570 hspd: 22.710752 vspd: 7.008111 yawfacing: 61652 yawintended: 28274 action: jump land
+x: -18	y: -84	a..C(....)...D(....) mariox: 4432.127441 marioy: 1795.012207 marioz: 4125.471680 hspd: 17.532246 vspd: 42.472511 yawfacing: 60522 yawintended: 28236 action: steep jump
+x: -18	y: -84	...C(....)...D(....) mariox: 4424.168457 marioy: 1837.484863 marioz: 4140.698242 hspd: 17.181601 vspd: 10.618128 yawfacing: 60522 yawintended: 28170 action: steep jump
+x: -18	y: -84	...C(....)...D(....) mariox: 4416.367676 marioy: 1848.103027 marioz: 4155.620117 hspd: 16.837969 vspd: 6.618128 yawfacing: 60522 yawintended: 28086 action: steep jump
+x: -18	y: -84	ab.C(....)...D(....) mariox: 4402.258301 marioy: 1854.721191 marioz: 4182.083008 hspd: 29.988420 vspd: 2.618128 yawfacing: 60522 yawintended: 28021 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4389.100098 marioy: 1857.339355 marioz: 4206.956055 hspd: 28.138563 vspd: -1.381872 yawfacing: 60522 yawintended: 27910 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4376.867676 marioy: 1855.957520 marioz: 4230.225586 hspd: 26.288591 vspd: -5.381872 yawfacing: 60522 yawintended: 27818 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4365.586426 marioy: 1850.575684 marioz: 4251.905273 hspd: 24.438606 vspd: -9.381872 yawfacing: 60522 yawintended: 27718 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4355.217285 marioy: 1841.193848 marioz: 4271.973633 hspd: 22.588692 vspd: -13.381872 yawfacing: 60522 yawintended: 27654 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4345.746582 marioy: 1827.812012 marioz: 4290.424805 hspd: 20.738869 vspd: -17.381872 yawfacing: 60522 yawintended: 27600 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4337.186035 marioy: 1810.430176 marioz: 4309.000000 hspd: 18.889214 vspd: -21.381872 yawfacing: 60522 yawintended: 27545 action: dive
+x: -18	y: -84	a..C(....)...D(....) mariox: 4329.510254 marioy: 1789.048340 marioz: 4324.214844 hspd: 17.039665 vspd: -25.381872 yawfacing: 60522 yawintended: 27509 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4324.000000 marioy: 1763.666504 marioz: 4337.804688 hspd: 15.190237 vspd: -29.381872 yawfacing: 60522 yawintended: 27474 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4324.000000 marioy: 1734.284668 marioz: 4349.761719 hspd: 13.340874 vspd: -33.381874 yawfacing: 60522 yawintended: 27456 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4324.000000 marioy: 1700.902832 marioz: 4360.058594 hspd: 11.491325 vspd: -37.381874 yawfacing: 60522 yawintended: 27501 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4324.000000 marioy: 1663.520996 marioz: 4368.703125 hspd: 9.641671 vspd: -41.381874 yawfacing: 60522 yawintended: 27545 action: dive
+x: -18	y: -84	...C(....)...D(....) mariox: 4324.000000 marioy: 1622.139160 marioz: 4375.687500 hspd: 7.791884 vspd: -45.381874 yawfacing: 60522 yawintended: 27582 action: dive
+x: -18	y: -84	a..C(....)...D(....) mariox: 4324.000000 marioy: 1576.757324 marioz: 4381.025391 hspd: 5.942061 vspd: -49.381874 yawfacing: 60522 yawintended: 27609 action: dive
+x: -18	y: -84	ab.C(....)...D(....) mariox: 4324.000000 marioy: 1527.375488 marioz: 4384.708984 hspd: 4.092174 vspd: -53.381874 yawfacing: 60522 yawintended: 27627 action: dive
+x: 65	y: -68	a..C(....)...D(....) mariox: 4324.000000 marioy: 1473.993652 marioz: 4383.566406 hspd: 2.812088 vspd: -57.381874 yawfacing: 60522 yawintended: 37164 action: dive
+x: 65	y: -68	a..C(....)...D(....) mariox: 4324.000000 marioy: 1416.611816 marioz: 4381.292969 hspd: 1.530198 vspd: -61.381874 yawfacing: 60522 yawintended: 37155 action: dive
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1355.229980 marioz: 4377.884766 hspd: 0.246506 vspd: -65.381874 yawfacing: 60522 yawintended: 37137 action: dive
+x: 65	y: -68	..zC(....)...D(....) mariox: 4324.000000 marioy: 1289.848145 marioz: 4377.884766 hspd: 0.000000 vspd: -65.000000 yawfacing: 60522 yawintended: 37119 action: fall after star grab
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: -65.000000 yawfacing: 60522 yawintended: 37055 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit
+x: 65	y: -68	...C(....)...D(....) mariox: 4324.000000 marioy: 1229.000000 marioz: 4377.884766 hspd: 0.000000 vspd: 0.000000 yawfacing: 29060 yawintended: 36991 action: star dance exit

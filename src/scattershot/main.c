@@ -199,6 +199,51 @@ void read_input(Input* fileInputs) {
         fclose(fp);
 }
 
+void writeInputState(Input* in,SO* so, FILE* fp) {
+    char a =    (in->b & CONT_A)        != 0 ? 'a' : '.';
+    char b =    (in->b & CONT_B)        != 0 ? 'b' : '.';
+    char z =    (in->b & CONT_Z)        != 0 ? 'z' : '.';
+    //C
+    char cr =   (in->b & CONT_CRIGHT)   != 0 ? 'r' : '.';
+    char cl =   (in->b & CONT_CLEFT)    != 0 ? 'l' : '.';
+    char cd =   (in->b & CONT_CDOWN)    != 0 ? 'd' : '.';
+    char cu =   (in->b & CONT_CUP)      != 0 ? 'u' : '.';
+
+    char s =    (in->b & CONT_START)    != 0 ? 's' : '.';
+    char l =    (in->b & CONT_L)        != 0 ? 'L' : '.';
+    char r =    (in->b & CONT_R)        != 0 ? 'R' : '.';
+
+    //D
+    char dr =   (in->b & CONT_DRIGHT)   != 0 ? 'r' : '.';
+    char dl =   (in->b & CONT_DLEFT)    != 0 ? 'l' : '.';
+    char dd =   (in->b & CONT_DDOWN)    != 0 ? 'd' : '.';
+    char du =   (in->b & CONT_DUP)      != 0 ? 'u' : '.';
+    char actionName[26];
+    get_act_str(*so->marioAction & 0x1FF, actionName);
+
+    fprintf(fp, "x: %d\ty: %d\t%c%c%cC(%c%c%c%c)%c%c%cD(%c%c%c%c) mariox: %f marioy: %f marioz: %f hspd: %f vspd: %f yawfacing: %d yawintended: %d action: %s\n" 
+            , in->x, in->y, a, b, z ,cr, cl, cd, cu, s, l ,r, dr, dl, dd, du,
+            *so->marioX, *so->marioY, *so->marioZ, *so->marioHSpd, *so->marioYVel, *so->marioYawFacing,*so->marioYawIntended, actionName
+            );
+}
+
+void dumpTasInfo(SO* so, Input* fileInputs, char* fileName) {
+    FILE* fp = fopen(fileName, "w");
+    if(!fp){
+        printf("couldnt open %s\n", fileName);
+        exit(0);
+    }
+    for(int i = 0; i<readLength; i++) {
+        Input in = fileInputs[i];
+        full_update(so, &in);
+        if(i >= startFrame) {
+            writeInputState(&in,so,fp);
+        }
+    }
+
+    fclose(fp); 
+}
+
 void run_inputs(SO* so, Input* fileInputs, SaveState* state,int* startCourse,int* startArea) {
     bool foundEnd = false;
     printf("run inputs\n");
@@ -217,7 +262,7 @@ void run_inputs(SO* so, Input* fileInputs, SaveState* state,int* startCourse,int
             else {
                 full_update(so, &fileInputs[f]);
             }
-            print_act(so);
+            print_act(*so->marioAction & 0x1FF);
             printf("x %f y %f z %f facing %d cam %u\n",*so->marioX,*so->marioY,*so->marioZ, *so->marioYawFacing, (*so->gCamera)->mode);
             
         }
@@ -233,7 +278,7 @@ void run_inputs(SO* so, Input* fileInputs, SaveState* state,int* startCourse,int
             save(so->sm64_base, state);
             *startCourse = *so->gCurrCourseNum;
             *startArea = *so->gCurrAreaIndex;
-            print_act(so);
+            print_act(*so->marioAction & 0x1FF);
             printf("initial x %f y %f z  %f\n",*so->marioX,*so->marioY,*so->marioZ);
             //exit(0);
         }
@@ -275,31 +320,28 @@ void run_inputs(SO* so, Input* fileInputs, SaveState* state,int* startCourse,int
 
 //TODO parse args
 int main(int argc, char *argv[]) {
-    if(argc > 1) {
-        init_settings(argv[1]);
-        //printf("blacklistcount %d\n", gBlackListCount);
-        //printf("whitelistcount %d\n", gWhiteListCount);
-        //for(int i = 0 ;i < gBlackListCount ;i++){
-        //    printf("state %x\n", gBlackList[i].state);
-        //}
-        
-        //printf("%f %f %f %f %f %f\n",
-        //                                        writeCond[0].min_x,
-        //                                        writeCond[0].max_x,
-        //                                        writeCond[0].min_y,
-        //                                        writeCond[0].max_y,
-        //                                        writeCond[0].min_z,
-        //                                        writeCond[0].max_z
-        //                                        );
-        
-        //printf("%f %f %f %f %f %f\n",   areas[0].qu.min_x,
-        //                                areas[0].qu.max_x,
-        //                                areas[0].qu.min_y,
-        //                                areas[0].qu.max_y,
-        //                                areas[0].qu.min_z,
-        //                                areas[0].qu.max_z);
-
+    bool stop = false;
+    char dumpFileName[128] = "";
+    for( int i = 1; i < argc; i++) {
+        if (argv[i][0] == '-')  {
+            if (argv[i][1] == 'i') {
+                if (i+1 < argc)  {
+                    init_settings(argv[i+1]);
+                }
+            }
+            if (argv[i][1] == 'd') {
+                //dump facing angles, intended angles, position, buttonpresses
+                if (i+1 < argc)  {
+                    strcpy(dumpFileName, argv[i+1]);
+                }
+            }
+            if (argv[i][1] == 's') {
+                stop = true;
+            }
+        }
     }
+
+
     initFields();
     printFields();
 
@@ -318,6 +360,15 @@ int main(int argc, char *argv[]) {
     // Find the stupid DLL segments for savestates.
     getDllInfo(dllFullName);
     printf("Got DLL segments data %d %d bss %d %d\n", dataStart, dataLength, bssStart, bssLength);
+    if(strlen(dumpFileName) > 0) {
+        SO so1;
+        init_so(&so1 ,dllFullName);
+        so1.sm64_init();
+        Input *fileInputs1 = (Input *)malloc(sizeof(Input) * readLength);
+        read_input(fileInputs1);
+        dumpTasInfo(&so1, fileInputs1, dumpFileName);
+    }
+    if(stop) return 0;
 
 
     // Per thread info.

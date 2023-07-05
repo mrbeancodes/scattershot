@@ -516,5 +516,8 @@ void print_xored_states(SaveState* xorSlaves, int tid);
 bool in_quboid(float x, float y, float z, QUBOID* qu);
 void printFields();
 void initFields();
+void print_act(int actionTrunc);
+int get_act(char* actName);
+void get_act_str(int action_trunc, char buffer[30]);
 
 #endif

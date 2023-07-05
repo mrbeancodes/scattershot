@@ -41,6 +41,7 @@ typedef struct  {
     float *marioFloorHeight;
     float *marioHSpd;
     uint16_t *marioYawFacing;
+    uint16_t *marioYawIntended;
     //short *marioYawVel = (short *)((char *)gMarioStates + 52);
     float *marioYVel;
     short *marioPitch;
@@ -70,8 +71,6 @@ typedef struct  {
 } SO;
 
 void init_so(SO* so,char* dllName);
-void print_act(SO *so);
-int get_act(char* actName);
 void reduced_update(SO* so, Input* in);
 void findMarioIndex(SO* so);
 
